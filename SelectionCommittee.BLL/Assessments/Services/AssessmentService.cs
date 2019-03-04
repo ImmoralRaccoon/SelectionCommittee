@@ -46,7 +46,9 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            _selectionCommitteeDataStorage.AssessmentRepository.Delete(id);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return 1;
         }
     }
 }

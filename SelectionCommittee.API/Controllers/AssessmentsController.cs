@@ -34,5 +34,13 @@ namespace SelectionCommittee.API.Controllers
             var assessmentModel = _mapper.Map<AssessmentModel>(assessmentDto);
             return Ok(assessmentModel);
         }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var responce = _assessmentService.DeleteAsync(id);
+            return Ok(responce);
+        }
     }
 }
