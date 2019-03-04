@@ -31,6 +31,14 @@ namespace SelectionCommittee.DAL.EF
                     Grade = 11,
                     GradeType = "school",
                     EnrolleeId = 1
+                },
+                new Assessment
+                {
+                    Id = 4,
+                    Name = "Ukrainian language",
+                    Grade = 12,
+                    GradeType = "exam",
+                    EnrolleeId = 1
                 });
 
             modelBuilder.Entity<Enrollee>().HasData(

@@ -26,5 +26,13 @@ namespace SelectionCommittee.API.Controllers
             var assessmentModels = _mapper.Map<IEnumerable<AssessmentModel>>(assessmentDto);
             return Ok(assessmentModels);
         }
+
+        [HttpGet("{id}", Name = "GetAssessment")]
+        public async Task<IActionResult> GetAsync(int id)
+        {
+            var assessmentDto = await _assessmentService.GetAsync(id);
+            var assessmentModel = _mapper.Map<AssessmentModel>(assessmentDto);
+            return Ok(assessmentModel);
+        }
     }
 }

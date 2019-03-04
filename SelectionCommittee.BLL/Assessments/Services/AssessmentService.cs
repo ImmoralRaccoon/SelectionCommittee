@@ -29,7 +29,9 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<AssessmentDto> GetAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var assessmnet = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(id);
+            var assessmentDto = _mapper.Map<AssessmentDto>(assessmnet);
+            return assessmentDto;
         }
 
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
