@@ -37,16 +37,39 @@ namespace SelectionCommittee.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] AssessmentAddOrUpdateModel addOrUpdateModel)
+        public async Task<IActionResult> AddAsync([FromBody] AssessmentAddOrUpdateModel assessmentAddOrUpdateModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(addOrUpdateModel);
+            var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(assessmentAddOrUpdateModel);
             var assessmentCreateModel = await _assessmentService.AddAsync(assessmentCreateDto);
             return Ok(assessmentCreateModel);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync(int? id, AssessmentAddOrUpdateModel assessmentAddOrUpdateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (id.HasValue)
+            {
+                var assessmentUpdateDto = _mapper.Map<AssessmentUpdateDto>(assessmentAddOrUpdateModel);
+                assessmentUpdateDto.Id = id.Value;
+                var assessment = await _assessmentService.UpdateAsync(assessmentUpdateDto);
+                return Ok(assessment);
+            }
+            else
+            {
+                var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(assessmentAddOrUpdateModel);
+                var assessmentCreateModel = await _assessmentService.AddAsync(assessmentCreateDto);
+                return Ok(assessmentCreateModel);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -55,7 +78,5 @@ namespace SelectionCommittee.API.Controllers
             var responce = await _assessmentService.DeleteAsync(id);
             return Ok(responce);
         }
-
-
     }
 }

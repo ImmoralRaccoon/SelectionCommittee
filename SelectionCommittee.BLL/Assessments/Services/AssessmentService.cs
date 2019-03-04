@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
 
 namespace SelectionCommittee.BLL.Assessments.Services
@@ -38,8 +39,15 @@ namespace SelectionCommittee.BLL.Assessments.Services
         {
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
 
-            var assessment =
-                _assessmentCreator.CreateAssessmentForEddition(assessmentCreateDto, enrollee);
+            var assessment = new Assessment
+            {
+                EnrolleeId = enrollee.Id,
+                Enrollee = enrollee,
+
+                Name = assessmentCreateDto.Name,
+                Grade = assessmentCreateDto.Grade,
+                GradeType = assessmentCreateDto.GradeType
+            };
 
             await _selectionCommitteeDataStorage.AssessmentRepository.AddAsync(assessment);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
@@ -48,7 +56,15 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto)
         {
-            throw new System.NotImplementedException();
+            var assessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(assessmentUpdateDto.Id);
+
+            assessment.Name = assessmentUpdateDto.Name;
+            assessment.Grade = assessmentUpdateDto.Grade;
+            assessment.GradeType = assessmentUpdateDto.GradeType;
+
+            _selectionCommitteeDataStorage.AssessmentRepository.Update(assessment);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return assessment.Id;
         }
 
         public async Task<int> DeleteAsync(int id)

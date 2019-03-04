@@ -36,7 +36,6 @@ namespace SelectionCommittee.API
             services.AddMvc();
 
             services.AddTransient<IAssessmentService, AssessmentService>();
-            services.AddTransient<IAssessmentCreator, AssessmentCreator>();
             services.AddTransient<IAssessmentRepository, AssessmentRepository>();
 
             services.AddTransient<IEnrolleeService, EnrolleeService>();
