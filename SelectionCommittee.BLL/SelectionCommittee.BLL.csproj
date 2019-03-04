@@ -13,8 +13,4 @@
     <ProjectReference Include="..\SelectionCommittee.DAL\SelectionCommittee.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Enrollees\Services\" />
-  </ItemGroup>
-
 </Project>

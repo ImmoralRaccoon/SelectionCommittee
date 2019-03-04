@@ -36,10 +36,9 @@ namespace SelectionCommittee.API.Controllers
         }
 
         [HttpDelete("{id}")]
-
         public async Task<IActionResult> Delete(int id)
         {
-            var responce = _assessmentService.DeleteAsync(id);
+            var responce = await _assessmentService.DeleteAsync(id);
             return Ok(responce);
         }
     }
