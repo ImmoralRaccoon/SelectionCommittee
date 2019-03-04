@@ -36,7 +36,14 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
         {
-            throw new System.NotImplementedException();
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
+
+            var assessment =
+                _assessmentCreator.CreateAssessmentForEddition(assessmentCreateDto, enrollee);
+
+            await _selectionCommitteeDataStorage.AssessmentRepository.AddAsync(assessment);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return assessment.EnrolleeId;
         }
 
         public async Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto)

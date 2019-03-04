@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Assessments;
+using SelectionCommittee.BLL.Assessments;
 using SelectionCommittee.BLL.Assessments.Services;
 
 namespace SelectionCommittee.API.Controllers
@@ -35,11 +36,26 @@ namespace SelectionCommittee.API.Controllers
             return Ok(assessmentModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody] AssessmentAddOrUpdateModel addOrUpdateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(addOrUpdateModel);
+            var assessmentCreateModel = await _assessmentService.AddAsync(assessmentCreateDto);
+            return Ok(assessmentCreateModel);
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var responce = await _assessmentService.DeleteAsync(id);
             return Ok(responce);
         }
+
+
     }
 }
