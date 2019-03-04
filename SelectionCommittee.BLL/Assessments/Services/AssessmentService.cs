@@ -12,13 +12,11 @@ namespace SelectionCommittee.BLL.Assessments.Services
     {
         private readonly IUnitOfWork _selectionCommitteeDataStorage;
         private readonly IMapper _mapper;
-        private readonly IAssessmentCreator _assessmentCreator;
 
-        public AssessmentService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper, IAssessmentCreator assessmentCreator)
+        public AssessmentService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper)
         {
             _selectionCommitteeDataStorage = selectionCommitteeDataStorage;
             _mapper = mapper;
-            _assessmentCreator = assessmentCreator;
         }
 
         public async Task<IEnumerable<AssessmentDto>> GetAllAsync()

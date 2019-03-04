@@ -40,5 +40,49 @@ namespace SelectionCommittee.API.Controllers
             var enrolleeModel = _mapper.Map<EnrolleeModel>(enrolleeDto);
             return Ok(enrolleeModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAsync([FromBody] EnrolleeAddOrUpdateModel enrolleeAddOrUpdateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var enrolleeCreateDto = _mapper.Map<EnrolleCreateDto>(enrolleeAddOrUpdateModel);
+            var enrolleeCreateModel = await _enrolleeService.AddAsync(enrolleeCreateDto);
+            return Ok(enrolleeCreateModel);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync(int? id,
+            [FromBody] EnrolleeAddOrUpdateModel enrolleeAddOrUpdateModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (id.HasValue)
+            {
+                var enrolleeUpdateDto = _mapper.Map<EnrolleeUpdateDto>(enrolleeAddOrUpdateModel);
+                enrolleeUpdateDto.Id = id.Value;
+                var enrollee = await _enrolleeService.UpdateAsync(enrolleeUpdateDto);
+                return Ok(enrollee);
+            }
+            else
+            {
+                var enrolleeCreateDto = _mapper.Map<EnrolleCreateDto>(enrolleeAddOrUpdateModel);
+                var enrolleeCreateModel = await _enrolleeService.AddAsync(enrolleeCreateDto);
+                return Ok(enrolleeCreateModel);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _enrolleeService.DeleteAsync(id);
+            return Ok(response);
+        }
     }
 }

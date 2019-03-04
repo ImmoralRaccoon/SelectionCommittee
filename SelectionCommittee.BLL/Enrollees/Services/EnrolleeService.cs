@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SelectionCommittee.BLL.Assessments;
+using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
 
 namespace SelectionCommittee.BLL.Enrollees.Services
@@ -34,17 +35,31 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> AddAsync(EnrolleCreateDto enrolleCreateDto)
         {
-            throw new System.NotImplementedException();
+            var enrollee = _mapper.Map<Enrollee>(enrolleCreateDto);
+            await _selectionCommitteeDataStorage.EnrolleeRepository.AddAsync(enrollee);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return enrollee.Id;
         }
 
         public async Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto)
         {
-            throw new System.NotImplementedException();
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateDto.Id);
+
+            enrollee.City = enrolleeUpdateDto.City;
+            enrollee.Email = enrolleeUpdateDto.Email;
+            enrollee.Region = enrolleeUpdateDto.Region;
+            enrollee.SchoolLyceumName = enrolleeUpdateDto.SchoolLyceumName;
+
+            _selectionCommitteeDataStorage.EnrolleeRepository.Update(enrollee);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return enrollee.Id;
         }
 
         public async Task<int> DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            _selectionCommitteeDataStorage.EnrolleeRepository.Delete(id);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return 1;   
         }
     }
 }
