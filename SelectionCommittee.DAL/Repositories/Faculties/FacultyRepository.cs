@@ -18,13 +18,15 @@ namespace SelectionCommittee.DAL.Repositories.Faculties
         public override IQueryable<Faculty> GetAll()
         {
             return _faculties
-                .Include(f => f.FacultyEnrolles);
+                .Include(f => f.FacultyEnrolles)
+                .ThenInclude(fe => fe.Enrollee);
         }
 
         public override async Task<Faculty> GetAsync(int id)
         {
             return await _faculties
                 .Include(f => f.FacultyEnrolles)
+                .ThenInclude(fe=>fe.Enrollee)
                 .FirstOrDefaultAsync(f => f.Id == id);
         }
 
