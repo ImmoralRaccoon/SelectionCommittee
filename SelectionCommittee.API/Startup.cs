@@ -12,9 +12,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SelectionCommittee.BLL.Assessments.Services;
 using SelectionCommittee.BLL.Enrollees.Services;
+using SelectionCommittee.BLL.Faculties.Services;
 using SelectionCommittee.DAL.EF;
 using SelectionCommittee.DAL.Repositories.Assessments;
 using SelectionCommittee.DAL.Repositories.Enrollees;
+using SelectionCommittee.DAL.Repositories.Faculties;
 using SelectionCommittee.DAL.UnitOfWork;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -40,6 +42,9 @@ namespace SelectionCommittee.API
 
             services.AddTransient<IEnrolleeService, EnrolleeService>();
             services.AddTransient<IEnrolleeRepository, EnrolleeRepository>();
+
+            services.AddTransient<IFacultyService, FacultyService>();
+            services.AddTransient<IFacultyRepository, FacultyRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();

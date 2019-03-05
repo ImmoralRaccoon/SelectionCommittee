@@ -17,8 +17,6 @@ namespace SelectionCommittee.API.Controllers
         private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
 
-        private ApplicationDbContext _context;
-
         public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper)
         {
             _enrolleeService = enrolleeService;
@@ -28,9 +26,9 @@ namespace SelectionCommittee.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var enrolleeDto = await _enrolleeService.GetAllAsync();
-            var enrolleeModel = _mapper.Map<IEnumerable<EnrolleeModel>>(enrolleeDto);
-            return Ok(enrolleeModel);
+            var enrolleeDtos = await _enrolleeService.GetAllAsync();
+            var enrolleeModels = _mapper.Map<IEnumerable<EnrolleeModel>>(enrolleeDtos);
+            return Ok(enrolleeModels);
         }
 
         [HttpGet("{id}", Name = "GetEnrollee")]
