@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,9 @@ namespace SelectionCommittee.DAL.Repositories.FacultyEnrollees
             _facultyEnrollees = dbContext.FacultyEnrollees;
         }
 
-
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
+        public void Delete(IEnumerable<FacultyEnrollee> facultyEnrollees)
+        {;
+            _facultyEnrollees.RemoveRange(facultyEnrollees);
         }
 
         public void Dispose()

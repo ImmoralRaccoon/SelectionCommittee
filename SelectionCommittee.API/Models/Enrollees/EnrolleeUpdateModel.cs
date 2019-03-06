@@ -1,6 +1,6 @@
 ﻿namespace SelectionCommittee.API.Models.Enrollees
 {
-    public class EnrolleeAddOrUpdateModel
+    public class EnrolleeUpdateModel
     {
         public string Email { get; set; }
         public string City { get; set; }

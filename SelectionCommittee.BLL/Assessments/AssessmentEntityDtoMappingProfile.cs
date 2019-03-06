@@ -8,6 +8,7 @@ namespace SelectionCommittee.BLL.Assessments
         public AssessmentEntityDtoMappingProfile()
         {
             CreateMap<Assessment, AssessmentDto>()
+                .ForMember(dst => dst.EnrolleeId, src => src.MapFrom(a => a.Enrollee.Id))
                 .ForMember(dst => dst.FirstName, src => src.MapFrom(a => a.Enrollee.FirstName))
                 .ForMember(dst => dst.LastName, src => src.MapFrom(a => a.Enrollee.LastName))
                 .ForMember(dst => dst.Patronymic, src => src.MapFrom(a => a.Enrollee.Patronymic))
@@ -16,6 +17,7 @@ namespace SelectionCommittee.BLL.Assessments
                 .ForMember(dst => dst.Region, src => src.MapFrom(a => a.Enrollee.Region))
                 .ForMember(dst => dst.SchoolLyceumName, src => src.MapFrom(a => a.Enrollee.SchoolLyceumName));
             CreateMap<AssessmentDto, Assessment>()
+                .ForPath(dst => dst.Enrollee.Id, src => src.MapFrom(ad => ad.EnrolleeId))
                 .ForPath(dst => dst.Enrollee.FirstName, src => src.MapFrom(ad => ad.FirstName))
                 .ForPath(dst => dst.Enrollee.LastName, src => src.MapFrom(ad => ad.LastName))
                 .ForPath(dst => dst.Enrollee.Patronymic, src => src.MapFrom(ad => ad.Patronymic))

@@ -40,7 +40,7 @@ namespace SelectionCommittee.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] EnrolleeAddOrUpdateModel enrolleeAddOrUpdateModel)
+        public async Task<IActionResult> AddAsync([FromBody] EnrolleeAddModel enrolleeAddOrUpdateModel)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace SelectionCommittee.API.Controllers
 
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(int? id,
-            [FromBody] EnrolleeAddOrUpdateModel enrolleeAddOrUpdateModel)
+            [FromBody] EnrolleeUpdateModel enrolleeAddOrUpdateModel)
         {
             if (!ModelState.IsValid)
             {

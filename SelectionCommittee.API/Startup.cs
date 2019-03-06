@@ -17,6 +17,7 @@ using SelectionCommittee.DAL.EF;
 using SelectionCommittee.DAL.Repositories.Assessments;
 using SelectionCommittee.DAL.Repositories.Enrollees;
 using SelectionCommittee.DAL.Repositories.Faculties;
+using SelectionCommittee.DAL.Repositories.FacultyEnrollees;
 using SelectionCommittee.DAL.UnitOfWork;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -45,6 +46,8 @@ namespace SelectionCommittee.API
 
             services.AddTransient<IFacultyService, FacultyService>();
             services.AddTransient<IFacultyRepository, FacultyRepository>();
+
+            services.AddTransient<IFacultyEnrolleeRepository, FacultyEnrolleeRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();

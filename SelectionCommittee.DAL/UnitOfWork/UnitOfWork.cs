@@ -4,6 +4,7 @@ using SelectionCommittee.DAL.EF;
 using SelectionCommittee.DAL.Repositories.Assessments;
 using SelectionCommittee.DAL.Repositories.Enrollees;
 using SelectionCommittee.DAL.Repositories.Faculties;
+using SelectionCommittee.DAL.Repositories.FacultyEnrollees;
 
 namespace SelectionCommittee.DAL.UnitOfWork
 {
@@ -11,6 +12,11 @@ namespace SelectionCommittee.DAL.UnitOfWork
     {
         private readonly ApplicationDbContext _dbContext;
         private bool _disposed;
+
+        private IAssessmentRepository _assessmentRepository;
+        private IEnrolleeRepository _enrolleeRepository;
+        private IFacultyRepository _facultyRepository;
+        private IFacultyEnrolleeRepository _facultyEnrolleeRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -28,7 +34,6 @@ namespace SelectionCommittee.DAL.UnitOfWork
                 return _assessmentRepository;
             }
         }
-        private IAssessmentRepository _assessmentRepository;
 
         public IEnrolleeRepository EnrolleeRepository
         {
@@ -41,7 +46,6 @@ namespace SelectionCommittee.DAL.UnitOfWork
                 return _enrolleeRepository;
             }
         }
-        private IEnrolleeRepository _enrolleeRepository;
 
         public IFacultyRepository FacultyRepository
         {
@@ -54,7 +58,18 @@ namespace SelectionCommittee.DAL.UnitOfWork
                 return _facultyRepository;
             }
         }
-        private IFacultyRepository _facultyRepository;
+
+        public IFacultyEnrolleeRepository FacultyEnrolleeRepository
+        {
+            get
+            {
+                if (_facultyEnrolleeRepository == null)
+                {
+                    _facultyEnrolleeRepository = new FacultyEnrolleeRepository(_dbContext);
+                }
+                return _facultyEnrolleeRepository;
+            }
+        }
 
         public void SaveChanges()
         {
@@ -81,6 +96,7 @@ namespace SelectionCommittee.DAL.UnitOfWork
                 AssessmentRepository?.Dispose();
                 EnrolleeRepository?.Dispose();
                 FacultyRepository?.Dispose();
+                FacultyEnrolleeRepository?.Dispose();
 
                 _dbContext?.Dispose();
             }

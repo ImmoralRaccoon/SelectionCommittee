@@ -9,8 +9,8 @@ namespace SelectionCommittee.API.MappingConfiguration
         public EnrolleeDtoModelMappingProfile()
         {
             CreateMap<EnrolleDto, EnrolleeModel>();
-            CreateMap<EnrolleeAddOrUpdateModel, EnrolleCreateDto>();
-            CreateMap<EnrolleeAddOrUpdateModel, EnrolleeUpdateDto>();
+            CreateMap<EnrolleeAddModel, EnrolleCreateDto>();
+            CreateMap<EnrolleeUpdateModel, EnrolleeUpdateDto>();
         }
     }
 }
