@@ -52,6 +52,19 @@ namespace SelectionCommittee.API.Controllers
             return Ok(enrolleeCreateModel);
         }
 
+        [HttpPost("{Add faculty to enrollee}")]
+        public async Task<IActionResult> AddAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var facultyEnrolleeCreateDto = _mapper.Map<FacultyEnrolleeCreateDto>(facultyEnrolleeModel);
+            var facultyEnrolleeCreateModel = await _enrolleeService.AddFacultyEnrolleeAsync(facultyEnrolleeCreateDto);
+            return Ok(facultyEnrolleeCreateModel);
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(int? id,
             [FromBody] EnrolleeUpdateModel enrolleeAddOrUpdateModel)

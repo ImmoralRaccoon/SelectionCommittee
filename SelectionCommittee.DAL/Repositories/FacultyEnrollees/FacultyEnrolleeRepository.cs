@@ -20,9 +20,26 @@ namespace SelectionCommittee.DAL.Repositories.FacultyEnrollees
             _facultyEnrollees = dbContext.FacultyEnrollees;
         }
 
-        public void Delete(IEnumerable<FacultyEnrollee> facultyEnrollees)
-        {;
-            _facultyEnrollees.RemoveRange(facultyEnrollees);
+        public async Task<IEnumerable<FacultyEnrollee>> GetByFacultyId(int id)
+        {
+            return await _facultyEnrollees
+                .Where(fe => fe.FacultyId == id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<FacultyEnrollee>> GetByEnrolleeId(int id)
+        {
+            return await _facultyEnrollees
+                .Where(fe => fe.EnrolleeId == id).ToListAsync();
+        }
+
+        public async Task AddAsync(FacultyEnrollee facultyEnrollee)
+        {
+            await _facultyEnrollees.AddAsync(facultyEnrollee);
+        }
+
+        public void RemoveRange(IEnumerable<FacultyEnrollee> facultyEnrollee)
+        {
+            _facultyEnrollees.RemoveRange(facultyEnrollee);
         }
 
         public void Dispose()

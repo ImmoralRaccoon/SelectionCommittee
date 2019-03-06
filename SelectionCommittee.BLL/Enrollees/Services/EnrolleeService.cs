@@ -41,6 +41,14 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             return enrollee.Id;
         }
 
+        public async Task<int> AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto)
+        {
+            var facultyEnrollee = _mapper.Map<FacultyEnrollee>(facultyEnrolleeCreateDto);
+            await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.AddAsync(facultyEnrollee);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return 1;
+        }
+
         public async Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto)
         {
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateDto.Id);

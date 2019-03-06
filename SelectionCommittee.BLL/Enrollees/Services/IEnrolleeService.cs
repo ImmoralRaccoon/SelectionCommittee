@@ -12,6 +12,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         Task<int> AddAsync(EnrolleCreateDto enrolleCreateDto);
 
+        Task<int> AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto);
+
         Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto);
 
         Task<int> DeleteAsync(int id);

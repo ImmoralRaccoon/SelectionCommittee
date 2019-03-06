@@ -11,6 +11,7 @@ namespace SelectionCommittee.API.MappingConfiguration
             CreateMap<EnrolleDto, EnrolleeModel>();
             CreateMap<EnrolleeAddModel, EnrolleCreateDto>();
             CreateMap<EnrolleeUpdateModel, EnrolleeUpdateDto>();
+            CreateMap<FacultyEnrolleeAddModel, FacultyEnrolleeCreateDto>();
         }
     }
 }
