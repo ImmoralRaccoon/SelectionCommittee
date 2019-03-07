@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +24,30 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<IEnumerable<FacultyDto>> GetAllAsync()
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            return facultyDtos;
+        }
+
+        public async Task<IEnumerable<FacultyDto>> GetAllSortedByNameAsync()
+        {
+            var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
+            faculties.OrderBy(f => f.Name);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            return facultyDtos;
+        }
+
+        public async Task<IEnumerable<FacultyDto>> GetAllSortedByAmountOfPlacesAsync()
+        {
+            var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
+            faculties.OrderBy(f => f.NumberOfPlaces);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            return facultyDtos;
+        }
+
+        public async Task<IEnumerable<FacultyDto>> GetAllSortedByAmountofBudgetPlacesAsync()
+        {
+            var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
+            faculties.OrderBy(f => f.NumberOfBudgetPlaces);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
             return facultyDtos;
         }
