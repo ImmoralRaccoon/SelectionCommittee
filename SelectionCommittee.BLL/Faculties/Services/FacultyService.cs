@@ -28,10 +28,18 @@ namespace SelectionCommittee.BLL.Faculties.Services
             return facultyDtos;
         }
 
-        public async Task<IEnumerable<FacultyDto>> GetAllSortedByNameAsync()
+        public async Task<IEnumerable<FacultyDto>> GetAllSortedByNameFromAAsync()
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderBy(f => f.Name);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
+            return facultyDtos;
+        }
+
+        public async Task<IEnumerable<FacultyDto>> GetAllSortedByNameFromZAsync()
+        {
+            var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
+            var orderedEnumerable = faculties.OrderByDescending(f => f.Name);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
             return facultyDtos;
         }

@@ -28,11 +28,20 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
-        [Route("byName")]
+        [Route("byName(a-z)")]
         [HttpGet]
-        public async Task<IActionResult> GetAllByNameAsync()
+        public async Task<IActionResult> GetAllByNameFromAAsync()
         {
-            var facultyDtos = await _facultyService.GetAllSortedByNameAsync();
+            var facultyDtos = await _facultyService.GetAllSortedByNameFromAAsync();
+            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
+            return Ok(facultyModels);
+        }
+
+        [Route("byName(z-a)")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllByNameFromZAsync()
+        {
+            var facultyDtos = await _facultyService.GetAllSortedByNameFromZAsync();
             var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
             return Ok(facultyModels);
         }

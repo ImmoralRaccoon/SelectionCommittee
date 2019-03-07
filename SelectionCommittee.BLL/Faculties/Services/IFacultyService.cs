@@ -9,7 +9,9 @@ namespace SelectionCommittee.BLL.Faculties.Services
     {
         Task<IEnumerable<FacultyDto>> GetAllAsync();
 
-        Task<IEnumerable<FacultyDto>> GetAllSortedByNameAsync();
+        Task<IEnumerable<FacultyDto>> GetAllSortedByNameFromAAsync();
+
+        Task<IEnumerable<FacultyDto>> GetAllSortedByNameFromZAsync();
 
         Task<IEnumerable<FacultyDto>> GetAllSortedByAmountOfPlacesAsync();
 
