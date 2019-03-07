@@ -56,6 +56,10 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<int> DeleteAsync(int id)
         {
             _selectionCommitteeDataStorage.FacultyRepository.Delete(id);
+
+            var facultyId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByFacultyId(id);
+            await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.RemoveRange(facultyId);
+
             await _selectionCommitteeDataStorage.SaveChangesAsync();
             return 1;
         }

@@ -52,7 +52,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(enrolleeCreateModel);
         }
 
-        [HttpPost("{Add faculty to enrollee}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> AddAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
         {
             if (!ModelState.IsValid)

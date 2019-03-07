@@ -10,6 +10,6 @@ namespace SelectionCommittee.DAL.Repositories.FacultyEnrollees
         Task<IEnumerable<FacultyEnrollee>> GetByFacultyId(int id);
         Task<IEnumerable<FacultyEnrollee>> GetByEnrolleeId(int id);
         Task AddAsync(FacultyEnrollee facultyEnrollee);
-        void RemoveRange(IEnumerable<FacultyEnrollee> facultyEnrollees);
+        Task RemoveRange(IEnumerable<FacultyEnrollee> facultyEnrollee);
     }
 }

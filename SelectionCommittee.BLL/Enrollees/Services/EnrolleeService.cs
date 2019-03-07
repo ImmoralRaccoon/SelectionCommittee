@@ -66,8 +66,11 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<int> DeleteAsync(int id)
         {
             _selectionCommitteeDataStorage.EnrolleeRepository.Delete(id);
+            var enrolleeId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByEnrolleeId(id);
+            await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.RemoveRange(enrolleeId);
+
             await _selectionCommitteeDataStorage.SaveChangesAsync();
-            return 1;   
+            return 1;
         }
     }
 }

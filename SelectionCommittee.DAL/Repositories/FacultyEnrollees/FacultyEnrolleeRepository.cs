@@ -37,9 +37,9 @@ namespace SelectionCommittee.DAL.Repositories.FacultyEnrollees
             await _facultyEnrollees.AddAsync(facultyEnrollee);
         }
 
-        public void RemoveRange(IEnumerable<FacultyEnrollee> facultyEnrollee)
+        public async Task  RemoveRange(IEnumerable<FacultyEnrollee> facultyEnrollee)
         {
-            _facultyEnrollees.RemoveRange(facultyEnrollee);
+             _facultyEnrollees.RemoveRange(facultyEnrollee);
         }
 
         public void Dispose()
