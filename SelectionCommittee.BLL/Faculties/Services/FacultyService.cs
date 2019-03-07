@@ -31,24 +31,24 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<IEnumerable<FacultyDto>> GetAllSortedByNameAsync()
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
-            faculties.OrderBy(f => f.Name);
-            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            var orderedEnumerable = faculties.OrderBy(f => f.Name);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
             return facultyDtos;
         }
 
         public async Task<IEnumerable<FacultyDto>> GetAllSortedByAmountOfPlacesAsync()
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
-            faculties.OrderBy(f => f.NumberOfPlaces);
-            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            var orderedEnumerable = faculties.OrderByDescending(f => f.NumberOfPlaces);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
             return facultyDtos;
         }
 
         public async Task<IEnumerable<FacultyDto>> GetAllSortedByAmountofBudgetPlacesAsync()
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
-            faculties.OrderBy(f => f.NumberOfBudgetPlaces);
-            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+            var orderedEnumerable = faculties.OrderByDescending(f => f.NumberOfBudgetPlaces);
+            var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
             return facultyDtos;
         }
 

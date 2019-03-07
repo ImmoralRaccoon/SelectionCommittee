@@ -28,6 +28,33 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        [Route("byName")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllByNameAsync()
+        {
+            var facultyDtos = await _facultyService.GetAllSortedByNameAsync();
+            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
+            return Ok(facultyModels);
+        }
+
+        [Route("byNumberOfPlaces")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllByNumberOfPlacesAsync()
+        {
+            var facultyDtos = await _facultyService.GetAllSortedByAmountOfPlacesAsync();
+            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
+            return Ok(facultyModels);
+        }
+
+        [Route("byNumberOfBudgetPlaces")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllByNumberOfBudgetPlacesAsync()
+        {
+            var facultyDtos = await _facultyService.GetAllSortedByAmountofBudgetPlacesAsync();
+            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
+            return Ok(facultyModels);
+        }
+
         [HttpGet("{id}", Name = "GetFaculty")]
         public async Task<IActionResult> GetAsync(int id)
         {
