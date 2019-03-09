@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SelectionCommittee.Authentication\SelectionCommittee.Authentication.csproj" />
     <ProjectReference Include="..\SelectionCommittee.BLL\SelectionCommittee.BLL.csproj" />
     <ProjectReference Include="..\SelectionCommittee.DAL\SelectionCommittee.DAL.csproj" />
   </ItemGroup>
