@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SelectionCommittee.Authentication;
+using SelectionCommittee.Authentication.Services;
 using SelectionCommittee.BLL.Assessments.Services;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties.Services;
@@ -36,6 +40,7 @@ namespace SelectionCommittee.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EBANAYAdb-PIZDEC")));
+            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SelectionCommitteeAuthentification")));
             services.AddMvc();
 
             services.AddTransient<IAssessmentService, AssessmentService>();
@@ -49,7 +54,16 @@ namespace SelectionCommittee.API
 
             services.AddTransient<IFacultyEnrolleeRepository, FacultyEnrolleeRepository>();
 
+            services.AddTransient<IAuthentificationService, AuthentificationService>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
             services.AddAutoMapper();
 
             services.AddSwaggerGen(c =>
@@ -74,6 +88,8 @@ namespace SelectionCommittee.API
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Selection Committee API v1"));
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }
