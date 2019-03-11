@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Faculties;
+using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties;
 using SelectionCommittee.BLL.Faculties.Services;
 
@@ -13,12 +14,14 @@ namespace SelectionCommittee.API.Controllers
     public class FacultiesController : Controller
     {
         private readonly IFacultyService _facultyService;
+        private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
 
-        public FacultiesController(IFacultyService facultyService, IMapper mapper)
+        public FacultiesController(IFacultyService facultyService, IMapper mapper, IEnrolleeService enrolleeService)
         {
             _facultyService = facultyService;
             _mapper = mapper;
+            _enrolleeService = enrolleeService;
         }
 
         [HttpGet]
@@ -117,6 +120,24 @@ namespace SelectionCommittee.API.Controllers
         {
             var response = await _facultyService.DeleteAsync(id);
             return Ok(response);
+        }
+
+        //[Authorize(Roles = "admin")]
+        [Route("createFacultyStatementForOne")]
+        [HttpGet]
+        public async Task<IActionResult> CreateFacultyStatement(int id)
+        {
+            var enrolleeRate = await _enrolleeService.CalculateRating(id);
+            return Ok(enrolleeRate);
+        }
+
+        //[Authorize(Roles = "admin")]
+        [Route("createFacultyStatement")]
+        [HttpGet]
+        public async Task<IActionResult> CreateFacultyStatement()
+        {
+            var enrolleesRatings = await _enrolleeService.CalculateRatings();
+            return Ok(enrolleesRatings);
         }
     }
 }

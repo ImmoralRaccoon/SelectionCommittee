@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SelectionCommittee.BLL.Assessments;
+using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.BLL.Enrollees.Services
 {
@@ -19,5 +20,9 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         Task<int> UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto);
 
         Task<int> DeleteAsync(int id);
+
+        Task<double> CalculateRating(int id);
+
+        Task<IEnumerable<Enrollee>> CalculateRatings();
     }
 }

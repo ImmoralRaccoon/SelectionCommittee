@@ -13,6 +13,7 @@ namespace SelectionCommittee.DAL.Entities
         public string Region { get; set; }
         public string SchoolLyceumName { get; set; }
         public string LockStatus { get; set; } = "unlocked";
+        public double Rating { get; set; }
         public ICollection<FacultyEnrollee> FacultyEnrolles { get; set; }
         public ICollection<Assessment> Assessments { get; set; }
     }

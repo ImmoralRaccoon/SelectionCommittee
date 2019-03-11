@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -81,6 +83,42 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
             await _selectionCommitteeDataStorage.SaveChangesAsync();
             return 1;
+        }
+
+        public async Task<IEnumerable<Enrollee>> CalculateRatings()
+        {
+            var enrollees = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAll().ToListAsync();
+
+            foreach (Enrollee enrollee in enrollees)
+            {
+                enrollee.Rating = (double)enrollee.Assessments.Sum(a => a.Grade) / enrollee.Assessments.Count;
+            }
+
+            // Sorting by Enrollee.Rating
+            for (int i = 0; i < enrollees.Count - 1; i++)
+            {
+                for (int j = i + 1; j < enrollees.Count; j++)
+                {
+                    if (enrollees[i].Rating > enrollees[j].Rating)
+                    {
+                        var tmp = enrollees[i];
+                        enrollees[i] = enrollees[j];
+                        enrollees[j] = tmp;
+                    }
+                }
+            }
+
+            return enrollees;
+        }
+
+        public async Task<double> CalculateRating(int id)
+        {
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
+            var score = enrollee.Assessments.Sum(a => a.Grade);
+            double rating = (double)score / 8;
+            enrollee.Rating = rating;
+
+            return enrollee.Rating;
         }
     }
 }

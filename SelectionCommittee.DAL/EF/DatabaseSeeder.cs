@@ -39,6 +39,38 @@ namespace SelectionCommittee.DAL.EF
                     Grade = 12,
                     GradeType = "exam",
                     EnrolleeId = 1
+                },
+                new Assessment
+                {
+                    Id = 5,
+                    Name = "Math",
+                    Grade = 10,
+                    GradeType = "school",
+                    EnrolleeId = 2
+                },
+                new Assessment
+                {
+                    Id = 6,
+                    Name = "Ukrainian language",
+                    Grade = 5,
+                    GradeType = "school",
+                    EnrolleeId = 2
+                },
+                new Assessment
+                {
+                    Id = 7,
+                    Name = "English",
+                    Grade = 3,
+                    GradeType = "school",
+                    EnrolleeId = 2
+                },
+                new Assessment
+                {
+                    Id = 8,
+                    Name = "Ukrainian language",
+                    Grade = 9,
+                    GradeType = "exam",
+                    EnrolleeId = 2
                 });
 
             modelBuilder.Entity<Enrollee>().HasData(
@@ -52,6 +84,17 @@ namespace SelectionCommittee.DAL.EF
                     Region = "Kharkiv",
                     City = "Kharkiv",
                     SchoolLyceumName = "Shool #12"
+                },
+                new Enrollee
+                {
+                    Id = 2,
+                    FirstName = "Stolyarenko",
+                    LastName = "Vladislav",
+                    Patronymic = "Notingem",
+                    Email = "vdy23i@gmai.com",
+                    Region = "Kupiansk",
+                    City = "Kharkiv",
+                    SchoolLyceumName = "Shool #2"
                 });
 
             modelBuilder.Entity<Faculty>().HasData(
