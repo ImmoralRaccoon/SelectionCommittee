@@ -1,6 +1,7 @@
-﻿    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Assessments;
 using SelectionCommittee.BLL.Assessments;
@@ -8,6 +9,7 @@ using SelectionCommittee.BLL.Assessments.Services;
 
 namespace SelectionCommittee.API.Controllers
 {
+    [Authorize(Roles = "user")]
     [Route("api/[controller]")]
     public class AssessmentsController : Controller
     {

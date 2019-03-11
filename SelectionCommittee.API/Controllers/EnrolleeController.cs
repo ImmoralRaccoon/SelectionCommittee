@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Enrollees;
 using SelectionCommittee.BLL.Enrollees;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.DAL.EF;
-using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.API.Controllers
 {
@@ -23,6 +22,7 @@ namespace SelectionCommittee.API.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles = "user")]
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -31,6 +31,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(enrolleeModels);
         }
 
+        [Authorize(Roles = "user")]
         [HttpGet("{id}", Name = "GetEnrollee")]
         public async Task<IActionResult> GetAsync(int id)
         {
@@ -39,6 +40,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(enrolleeModel);
         }
 
+        [Authorize(Roles = "user")]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] EnrolleeAddModel enrolleeAddOrUpdateModel)
         {
@@ -52,6 +54,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(enrolleeCreateModel);
         }
 
+        [Authorize(Roles = "user")]
         [Route("decouplingTable")]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
@@ -66,6 +69,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyEnrolleeCreateModel);
         }
 
+        [Authorize(Roles = "user")]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(int? id,
             [FromBody] EnrolleeUpdateModel enrolleeAddOrUpdateModel)
@@ -90,6 +94,7 @@ namespace SelectionCommittee.API.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.BLL.Faculties;
@@ -72,6 +73,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModel);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] FacultyAddOrUpdateModel facultyAddOrUpdateModel)
         {
@@ -85,6 +87,7 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyCreateModel);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(int? id,
             [FromBody] FacultyAddOrUpdateModel facultyAddOrUpdateModel)
@@ -108,6 +111,7 @@ namespace SelectionCommittee.API.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
