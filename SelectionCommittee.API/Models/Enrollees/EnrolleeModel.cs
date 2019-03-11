@@ -11,5 +11,6 @@
         public string City { get; set; }
         public string Region { get; set; }
         public string SchoolLyceumName { get; set; }
+        public string LockStatus { get; set; }
     }
 }

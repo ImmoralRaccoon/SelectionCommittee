@@ -63,6 +63,16 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             return enrollee.Id;
         }
 
+        public async Task<int> UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto)
+        {
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateStatusDto.Id);
+            enrollee.LockStatus = enrolleeUpdateStatusDto.LockStatus;
+
+            _selectionCommitteeDataStorage.EnrolleeRepository.Update(enrollee);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
+            return enrollee.Id;
+        }
+
         public async Task<int> DeleteAsync(int id)
         {
             _selectionCommitteeDataStorage.EnrolleeRepository.Delete(id);

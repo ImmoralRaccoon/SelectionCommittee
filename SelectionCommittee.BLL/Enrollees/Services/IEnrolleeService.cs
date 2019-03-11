@@ -16,6 +16,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto);
 
+        Task<int> UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto);
+
         Task<int> DeleteAsync(int id);
     }
 }

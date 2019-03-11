@@ -47,6 +47,11 @@ namespace SelectionCommittee.DAL.Repositories.Enrollees
             _enrollees.Update(entity);
         }
 
+        public void UpdateStatus(Enrollee entity)
+        {
+            _enrollees.Update(entity);
+        }
+
         public override async Task<bool> ContainsEntityWithId(int id)
         {
             return await _enrollees.AnyAsync(e => e.Id == id);

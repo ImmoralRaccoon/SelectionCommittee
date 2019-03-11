@@ -95,6 +95,27 @@ namespace SelectionCommittee.API.Controllers
         }
 
         [Authorize(Roles = "admin")]
+        [Route("updateUserStatus")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateStatusAsync(int? id, [FromBody] EnrolleeUpdateStatusModel enrolleeUpdateStatusModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (id.HasValue)
+            {
+                var enrolleeUpdateDto = _mapper.Map<EnrolleeUpdateStatusDto>(enrolleeUpdateStatusModel);
+                enrolleeUpdateDto.Id = id.Value;
+                var enrollee = await _enrolleeService.UpdateStatusAsync(enrolleeUpdateDto);
+                return Ok(enrollee);
+            }
+
+            return BadRequest();
+        }
+
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
