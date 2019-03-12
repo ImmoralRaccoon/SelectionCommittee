@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
+using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.BLL.Assessments.Services
 {
@@ -12,17 +13,21 @@ namespace SelectionCommittee.BLL.Assessments.Services
     {
         private readonly IUnitOfWork _selectionCommitteeDataStorage;
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public AssessmentService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper)
+        public AssessmentService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper, ILoggerManager logger)
         {
             _selectionCommitteeDataStorage = selectionCommitteeDataStorage;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<AssessmentDto>> GetAllAsync()
         {
             var assessments = await _selectionCommitteeDataStorage.AssessmentRepository.GetAll().ToListAsync();
             var assessmentsDtos = _mapper.Map<IEnumerable<AssessmentDto>>(assessments);
+
+            _logger.LogInfo("GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return assessmentsDtos;
         }
 
@@ -30,6 +35,8 @@ namespace SelectionCommittee.BLL.Assessments.Services
         {
             var assessmnet = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(id);
             var assessmentDto = _mapper.Map<AssessmentDto>(assessmnet);
+
+            _logger.LogInfo("GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return assessmentDto;
         }
 
@@ -49,6 +56,8 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
             await _selectionCommitteeDataStorage.AssessmentRepository.AddAsync(assessment);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return assessment.EnrolleeId;
         }
 
@@ -62,6 +71,8 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
             _selectionCommitteeDataStorage.AssessmentRepository.Update(assessment);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("UpdateAsync(AssessmentUpdateDto assessmentUpdateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return assessment.Id;
         }
 
@@ -69,6 +80,8 @@ namespace SelectionCommittee.BLL.Assessments.Services
         {
             _selectionCommitteeDataStorage.AssessmentRepository.Delete(id);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return 1;
         }
     }

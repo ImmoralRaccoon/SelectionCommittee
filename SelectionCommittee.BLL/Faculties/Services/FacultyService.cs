@@ -29,6 +29,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
         {
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(faculties);
+
+            _logger.LogInfo("GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDtos;
         }
 
@@ -37,7 +39,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderBy(f => f.Name);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
-            _logger.LogInfo("Service");
+
+            _logger.LogInfo("GetAllSortedByNameFromAAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDtos;
         }
 
@@ -46,6 +49,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderByDescending(f => f.Name);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
+
+            _logger.LogInfo("GetAllSortedByNameFromZAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDtos;
         }
 
@@ -54,6 +59,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderByDescending(f => f.NumberOfPlaces);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
+
+            _logger.LogInfo("GetAllSortedByAmountOfPlacesAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDtos;
         }
 
@@ -62,6 +69,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderByDescending(f => f.NumberOfBudgetPlaces);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
+
+            _logger.LogInfo("GetAllSortedByAmountofBudgetPlacesAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDtos;
         }
 
@@ -69,6 +78,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
         {
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
             var facultyDto = _mapper.Map<FacultyDto>(faculty);
+
+            _logger.LogInfo("GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyDto;
         }
 
@@ -77,6 +88,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculty = _mapper.Map<Faculty>(facultyCreateDto);
             await _selectionCommitteeDataStorage.FacultyRepository.AddAsync(faculty);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return faculty.Id;
         }
 
@@ -90,6 +103,8 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
             _selectionCommitteeDataStorage.FacultyRepository.Update(faculty);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("UpdateAsync(FacultyUpdateDto facultyUpdateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return faculty.Id;
         }
 
@@ -99,8 +114,9 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
             var facultyId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByFacultyId(id);
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.RemoveRange(facultyId);
-
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("DeleteAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return 1;
         }
 

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using SelectionCommittee.BLL.Assessments;
 using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
+using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.BLL.Enrollees.Services
 {
@@ -14,17 +15,21 @@ namespace SelectionCommittee.BLL.Enrollees.Services
     {
         private readonly IUnitOfWork _selectionCommitteeDataStorage;
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public EnrolleeService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper)
+        public EnrolleeService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper, ILoggerManager logger)
         {
             _selectionCommitteeDataStorage = selectionCommitteeDataStorage;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<EnrolleDto>> GetAllAsync()
         {
             var enrollees = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAll().ToListAsync();
             var enrolleeDtos = _mapper.Map<IEnumerable<EnrolleDto>>(enrollees);
+
+            _logger.LogInfo("GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrolleeDtos;
         }
 
@@ -32,6 +37,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         {
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
             var enrolleeDto = _mapper.Map<EnrolleDto>(enrollee);
+
+            _logger.LogInfo("GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrolleeDto;
         }
 
@@ -40,6 +47,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             var enrollee = _mapper.Map<Enrollee>(enrolleCreateDto);
             await _selectionCommitteeDataStorage.EnrolleeRepository.AddAsync(enrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrollee.Id;
         }
 
@@ -48,6 +57,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             var facultyEnrollee = _mapper.Map<FacultyEnrollee>(facultyEnrolleeCreateDto);
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.AddAsync(facultyEnrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return 1;
         }
 
@@ -62,6 +73,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
             _selectionCommitteeDataStorage.EnrolleeRepository.Update(enrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrollee.Id;
         }
 
@@ -72,6 +85,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
             _selectionCommitteeDataStorage.EnrolleeRepository.Update(enrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrollee.Id;
         }
 
@@ -82,6 +97,8 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.RemoveRange(enrolleeId);
 
             await _selectionCommitteeDataStorage.SaveChangesAsync();
+
+            _logger.LogInfo("DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return 1;
         }
 
@@ -95,7 +112,7 @@ namespace SelectionCommittee.BLL.Enrollees.Services
                 enrollee.Rating = (double)enrollee.Assessments.Sum(a => a.Grade) / enrollee.Assessments.Count;
             }
 
-            var enrolleeSorted = enrollees.OrderBy(e=>e.Rating);
+            var enrolleeSorted = enrollees.OrderBy(e => e.Rating);
 
             // Sorting by Enrollee.Rating
             //for (int i = 0; i < enrollees.Count - 1; i++)
