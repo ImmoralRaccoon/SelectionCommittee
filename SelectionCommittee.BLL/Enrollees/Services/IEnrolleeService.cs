@@ -24,5 +24,7 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         Task<double> CalculateRating(int id);
 
         Task<IEnumerable<Enrollee>> CalculateRatings();
+
+        Task<IEnumerable<Enrollee>> GetAllEnrolleeByFacultyId(IEnumerable<int> ints);
     }
 }

@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties;
 using SelectionCommittee.BLL.Faculties.Services;
+using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.API.Controllers
 {
@@ -123,21 +125,30 @@ namespace SelectionCommittee.API.Controllers
         }
 
         //[Authorize(Roles = "admin")]
-        [Route("createFacultyStatementForOne")]
-        [HttpGet]
-        public async Task<IActionResult> CreateFacultyStatement(int id)
-        {
-            var enrolleeRate = await _enrolleeService.CalculateRating(id);
-            return Ok(enrolleeRate);
-        }
+        //[Route("createFacultyStatementForOne")]
+        //[HttpGet]
+        //public async Task<IActionResult> CreateFacultyStatement(int id)
+        //{
+        //    var enrolleeRate = await _enrolleeService.CalculateRating(id);
+        //    return Ok(enrolleeRate);
+        //}
 
         //[Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
-        public async Task<IActionResult> CreateFacultyStatement()
+        public async Task<IActionResult> CreateFacultyStatement(int id)
         {
             var enrolleesRatings = await _enrolleeService.CalculateRatings();
+            //var a = await _facultyService.CreateAssessment(id);
             return Ok(enrolleesRatings);
         }
+
+        //[Route("createFacultyStatementForOne")]
+        //[HttpGet]
+        //public async Task<IActionResult> CreateFacultyStatement(int id)
+        //{
+        //    var faculty = await _facultyService.GetAsync(id);
+        //    faculty.
+        //}
     }
 }

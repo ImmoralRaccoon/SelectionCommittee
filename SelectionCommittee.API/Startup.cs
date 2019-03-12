@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using NLog;
+using NLog.Extensions.Logging;
 using SelectionCommittee.Authentication;
 using SelectionCommittee.Authentication.Services;
 using SelectionCommittee.BLL.Assessments.Services;
@@ -23,14 +22,16 @@ using SelectionCommittee.DAL.Repositories.Enrollees;
 using SelectionCommittee.DAL.Repositories.Faculties;
 using SelectionCommittee.DAL.Repositories.FacultyEnrollees;
 using SelectionCommittee.DAL.UnitOfWork;
+using SelectionCommittee.Logger;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace SelectionCommittee.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILoggerFactory loggerFactory)
         {
+            loggerFactory.ConfigureNLog(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -65,6 +66,7 @@ namespace SelectionCommittee.API
                 });
 
             services.AddAutoMapper();
+            services.AddSingleton<ILoggerManager, LoggerManager>();
 
             services.AddSwaggerGen(c =>
             {

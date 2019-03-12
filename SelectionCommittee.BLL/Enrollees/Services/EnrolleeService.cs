@@ -89,26 +89,34 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         {
             var enrollees = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAll().ToListAsync();
 
+
             foreach (Enrollee enrollee in enrollees)
             {
                 enrollee.Rating = (double)enrollee.Assessments.Sum(a => a.Grade) / enrollee.Assessments.Count;
             }
 
-            // Sorting by Enrollee.Rating
-            for (int i = 0; i < enrollees.Count - 1; i++)
-            {
-                for (int j = i + 1; j < enrollees.Count; j++)
-                {
-                    if (enrollees[i].Rating > enrollees[j].Rating)
-                    {
-                        var tmp = enrollees[i];
-                        enrollees[i] = enrollees[j];
-                        enrollees[j] = tmp;
-                    }
-                }
-            }
+            var enrolleeSorted = enrollees.OrderBy(e=>e.Rating);
 
-            return enrollees;
+            // Sorting by Enrollee.Rating
+            //for (int i = 0; i < enrollees.Count - 1; i++)
+            //{
+            //    for (int j = i + 1; j < enrollees.Count; j++)
+            //    {
+            //        if (enrollees[i].Rating > enrollees[j].Rating)
+            //        {
+            //            var tmp = enrollees[i];
+            //            enrollees[i] = enrollees[j];
+            //            enrollees[j] = tmp;
+            //        }
+            //    }
+            //}
+
+            return enrolleeSorted;
+        }
+
+        public async Task<IEnumerable<Enrollee>> GetAllEnrolleeByFacultyId(IEnumerable<int> ints)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<double> CalculateRating(int id)

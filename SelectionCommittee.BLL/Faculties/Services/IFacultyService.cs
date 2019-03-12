@@ -24,5 +24,7 @@ namespace SelectionCommittee.BLL.Faculties.Services
         Task<int> UpdateAsync(FacultyUpdateDto facultyUpdateDto);
 
         Task<int> DeleteAsync(int id);
+
+        Task<IEnumerable<int>> GetFacultyEnrolleeIds(int id);
     }
 }

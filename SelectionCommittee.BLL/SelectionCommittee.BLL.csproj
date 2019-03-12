@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SelectionCommittee.DAL\SelectionCommittee.DAL.csproj" />
+    <ProjectReference Include="..\SelectionCommittee.Logger\SelectionCommittee.Logger.csproj" />
   </ItemGroup>
 
 </Project>

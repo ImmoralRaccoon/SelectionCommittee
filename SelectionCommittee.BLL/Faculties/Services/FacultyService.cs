@@ -5,8 +5,10 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
+using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.BLL.Faculties.Services
 {
@@ -14,11 +16,13 @@ namespace SelectionCommittee.BLL.Faculties.Services
     {
         private readonly IUnitOfWork _selectionCommitteeDataStorage;
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public FacultyService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper)
+        public FacultyService(IUnitOfWork selectionCommitteeDataStorage, IMapper mapper, ILoggerManager logger)
         {
             _selectionCommitteeDataStorage = selectionCommitteeDataStorage;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<FacultyDto>> GetAllAsync()
@@ -33,6 +37,7 @@ namespace SelectionCommittee.BLL.Faculties.Services
             var faculties = await _selectionCommitteeDataStorage.FacultyRepository.GetAll().ToListAsync();
             var orderedEnumerable = faculties.OrderBy(f => f.Name);
             var facultyDtos = _mapper.Map<IEnumerable<FacultyDto>>(orderedEnumerable);
+            _logger.LogInfo("Service");
             return facultyDtos;
         }
 
@@ -97,6 +102,14 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
             await _selectionCommitteeDataStorage.SaveChangesAsync();
             return 1;
+        }
+
+        public async Task<IEnumerable<int>> GetFacultyEnrolleeIds(int id)
+        {
+            var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
+            var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.EnrolleeId);
+            //var facultyEnrolleesSorted;
+            return facultyEnrollees;
         }
     }
 }
