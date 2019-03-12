@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SelectionCommittee.BLL.Enrollees;
 using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
 using SelectionCommittee.Logger;
@@ -120,11 +121,13 @@ namespace SelectionCommittee.BLL.Faculties.Services
             return 1;
         }
 
-        public async Task<IEnumerable<int>> GetFacultyEnrolleeIds(int id)
+        public async Task<IEnumerable<Enrollee>> GetFacultyEnrolleeIds(int id)
         {
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
-            var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.EnrolleeId);
-            //var facultyEnrolleesSorted;
+            var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.Enrollee)
+                .OrderBy(s => s.Rating);
+
+            _logger.LogInfo("GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyEnrollees;
         }
     }

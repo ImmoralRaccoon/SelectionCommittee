@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using SelectionCommittee.BLL.Enrollees;
+using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.BLL.Faculties.Services
 {
@@ -25,6 +27,6 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         Task<int> DeleteAsync(int id);
 
-        Task<IEnumerable<int>> GetFacultyEnrolleeIds(int id);
+        Task<IEnumerable<Enrollee>> GetFacultyEnrolleeIds(int id);
     }
 }

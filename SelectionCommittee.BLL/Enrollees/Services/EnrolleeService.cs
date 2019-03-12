@@ -113,37 +113,10 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             }
 
             var enrolleeSorted = enrollees.OrderBy(e => e.Rating);
+            await _selectionCommitteeDataStorage.SaveChangesAsync();
 
-            // Sorting by Enrollee.Rating
-            //for (int i = 0; i < enrollees.Count - 1; i++)
-            //{
-            //    for (int j = i + 1; j < enrollees.Count; j++)
-            //    {
-            //        if (enrollees[i].Rating > enrollees[j].Rating)
-            //        {
-            //            var tmp = enrollees[i];
-            //            enrollees[i] = enrollees[j];
-            //            enrollees[j] = tmp;
-            //        }
-            //    }
-            //}
-
+            _logger.LogInfo("CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrolleeSorted;
-        }
-
-        public async Task<IEnumerable<Enrollee>> GetAllEnrolleeByFacultyId(IEnumerable<int> ints)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<double> CalculateRating(int id)
-        {
-            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
-            var score = enrollee.Assessments.Sum(a => a.Grade);
-            double rating = (double)score / 8;
-            enrollee.Rating = rating;
-
-            return enrollee.Rating;
         }
     }
 }

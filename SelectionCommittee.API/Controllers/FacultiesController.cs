@@ -125,30 +125,13 @@ namespace SelectionCommittee.API.Controllers
         }
 
         //[Authorize(Roles = "admin")]
-        //[Route("createFacultyStatementForOne")]
-        //[HttpGet]
-        //public async Task<IActionResult> CreateFacultyStatement(int id)
-        //{
-        //    var enrolleeRate = await _enrolleeService.CalculateRating(id);
-        //    return Ok(enrolleeRate);
-        //}
-
-        //[Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
-        public async Task<IActionResult> CreateFacultyStatement(int id)
+        public async Task<IActionResult> TakeFacultiesEnrollees(int id)
         {
-            var enrolleesRatings = await _enrolleeService.CalculateRatings();
-            //var a = await _facultyService.CreateAssessment(id);
-            return Ok(enrolleesRatings);
+            var rank = await _enrolleeService.CalculateRatings();
+            var enrollees = await _facultyService.GetFacultyEnrolleeIds(id);
+            return Ok(enrollees);
         }
-
-        //[Route("createFacultyStatementForOne")]
-        //[HttpGet]
-        //public async Task<IActionResult> CreateFacultyStatement(int id)
-        //{
-        //    var faculty = await _facultyService.GetAsync(id);
-        //    faculty.
-        //}
     }
 }
