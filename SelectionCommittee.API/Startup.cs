@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog;
 using NLog.Extensions.Logging;
 using SelectionCommittee.Authentication;
 using SelectionCommittee.Authentication.Services;
@@ -67,6 +66,7 @@ namespace SelectionCommittee.API
 
             services.AddAutoMapper();
             services.AddSingleton<ILoggerManager, LoggerManager>();
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddSwaggerGen(c =>
             {

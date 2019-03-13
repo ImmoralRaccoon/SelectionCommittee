@@ -15,11 +15,13 @@ namespace SelectionCommittee.API.Controllers
     {
         private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
 
-        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper)
+        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper, IEmailService emailService)
         {
             _enrolleeService = enrolleeService;
             _mapper = mapper;
+            _emailService = emailService;
         }
 
         [Authorize(Roles = "user")]
@@ -121,6 +123,14 @@ namespace SelectionCommittee.API.Controllers
         {
             var response = await _enrolleeService.DeleteAsync(id);
             return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("account/send-email")]
+        public async Task<IActionResult> SendEmailAsync()
+        {
+            await _emailService.SendEmail("kirianenko.vladislav@gmail.com", "SelectionCommittee.API", "Not from separate project!");
+            return Ok();
         }
     }
 }

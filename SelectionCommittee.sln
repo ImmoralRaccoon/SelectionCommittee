@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionCommittee.BLL", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionCommittee.Authentication", "SelectionCommittee.Authentication\SelectionCommittee.Authentication.csproj", "{98FC77AB-A80B-45EA-AA2C-D4808640336E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionCommittee.Logger", "SelectionCommittee.Logger\SelectionCommittee.Logger.csproj", "{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionCommittee.Logger", "SelectionCommittee.Logger\SelectionCommittee.Logger.csproj", "{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
