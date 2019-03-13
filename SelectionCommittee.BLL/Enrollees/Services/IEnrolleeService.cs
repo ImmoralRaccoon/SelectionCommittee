@@ -22,5 +22,7 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         Task<int> DeleteAsync(int id);
 
         Task<IEnumerable<Enrollee>> CalculateRatings();
+
+        Task<string> GetEnrolleEmail(int id);
     }
 }

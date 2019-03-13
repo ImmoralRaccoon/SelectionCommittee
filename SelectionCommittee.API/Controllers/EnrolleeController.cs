@@ -128,9 +128,11 @@ namespace SelectionCommittee.API.Controllers
 
         [HttpPost]
         [Route("Kit/send-email")]
-        public async Task<IActionResult> SendMessage()
+        public async Task<IActionResult> SendMessage(int id)
         {
-            await _emailServiceKit.SendEmailAsync("kirianenko.vladislav@gmail.com");
+            var email = _enrolleeService.GetEnrolleEmail(id);
+            string email1 = await email;
+            await _emailServiceKit.SendEmailAsync(email1);
             return Ok();
         }
     }

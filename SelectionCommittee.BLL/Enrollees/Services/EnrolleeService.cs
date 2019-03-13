@@ -118,5 +118,14 @@ namespace SelectionCommittee.BLL.Enrollees.Services
             _logger.LogInfo("CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
             return enrolleeSorted;
         }
+
+        public async Task<string> GetEnrolleEmail(int id)
+        {
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
+            var enrolleeDto = _mapper.Map<EnrolleDto>(enrollee);
+
+            _logger.LogInfo("GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.");
+            return enrolleeDto.Email;
+        }
     }
 }

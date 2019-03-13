@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SelectionCommittee.API.Models;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties;
@@ -132,7 +133,8 @@ namespace SelectionCommittee.API.Controllers
             var rank = await _enrolleeService.CalculateRatings();
             var enrollees = await _facultyService.GetFacultyEnrolleeIds(id);
             //var emails = enrollees.
-            return Ok(enrollees);
+            //var enrolleeIds = _mapper.Map<IEnumerable<EnrolleeIdModel>>(enrollees);
+            return Ok();
         }
     }
 }
