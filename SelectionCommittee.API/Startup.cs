@@ -21,6 +21,7 @@ using SelectionCommittee.DAL.Repositories.Enrollees;
 using SelectionCommittee.DAL.Repositories.Faculties;
 using SelectionCommittee.DAL.Repositories.FacultyEnrollees;
 using SelectionCommittee.DAL.UnitOfWork;
+using SelectionCommittee.Email;
 using SelectionCommittee.Logger;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -66,7 +67,7 @@ namespace SelectionCommittee.API
 
             services.AddAutoMapper();
             services.AddSingleton<ILoggerManager, LoggerManager>();
-            services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IEmailServiceKit, EmailServiceKit>();
 
             services.AddSwaggerGen(c =>
             {

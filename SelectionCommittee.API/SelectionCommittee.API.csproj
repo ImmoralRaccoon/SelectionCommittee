@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SelectionCommittee.Authentication\SelectionCommittee.Authentication.csproj" />
     <ProjectReference Include="..\SelectionCommittee.BLL\SelectionCommittee.BLL.csproj" />
+    <ProjectReference Include="..\SelectionCommittee.Email\SelectionCommittee.Email.csproj" />
     <ProjectReference Include="..\SelectionCommittee.Logger\SelectionCommittee.Logger.csproj" />
   </ItemGroup>
 

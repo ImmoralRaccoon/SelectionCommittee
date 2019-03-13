@@ -7,6 +7,7 @@ using SelectionCommittee.API.Models.Enrollees;
 using SelectionCommittee.BLL.Enrollees;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.DAL.EF;
+using SelectionCommittee.Email;
 
 namespace SelectionCommittee.API.Controllers
 {
@@ -15,13 +16,13 @@ namespace SelectionCommittee.API.Controllers
     {
         private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
-        private readonly IEmailService _emailService;
+        private readonly IEmailServiceKit _emailServiceKit;
 
-        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper, IEmailService emailService)
+        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper, IEmailServiceKit emailServiceKit)
         {
             _enrolleeService = enrolleeService;
             _mapper = mapper;
-            _emailService = emailService;
+            _emailServiceKit = emailServiceKit;
         }
 
         [Authorize(Roles = "user")]
@@ -126,10 +127,10 @@ namespace SelectionCommittee.API.Controllers
         }
 
         [HttpPost]
-        [Route("account/send-email")]
-        public async Task<IActionResult> SendEmailAsync()
+        [Route("Kit/send-email")]
+        public async Task<IActionResult> SendMessage()
         {
-            await _emailService.SendEmail("kirianenko.vladislav@gmail.com", "SelectionCommittee.API", "Not from separate project!");
+            await _emailServiceKit.SendEmailAsync("kirianenko.vladislav@gmail.com");
             return Ok();
         }
     }

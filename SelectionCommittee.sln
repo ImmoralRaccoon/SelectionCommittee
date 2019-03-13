@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionCommittee.Authenti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionCommittee.Logger", "SelectionCommittee.Logger\SelectionCommittee.Logger.csproj", "{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionCommittee.Email", "SelectionCommittee.Email\SelectionCommittee.Email.csproj", "{FC754D62-6484-4CAC-9132-96E70F3875E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAAE50A2-FCA0-4C34-96B4-5227C08E9051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC754D62-6484-4CAC-9132-96E70F3875E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC754D62-6484-4CAC-9132-96E70F3875E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC754D62-6484-4CAC-9132-96E70F3875E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC754D62-6484-4CAC-9132-96E70F3875E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
