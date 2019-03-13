@@ -10,7 +10,7 @@ namespace SelectionCommittee.Email
         {
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Site administration", "login@yandex.ru"));
+            emailMessage.From.Add(new MailboxAddress("Site administration", ""));
             emailMessage.To.Add(new MailboxAddress("", email));
             emailMessage.Subject = "SelectionCommittee.API-MailKit";
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
