@@ -52,3 +52,14 @@
 2019-03-14 13:51:20.1999 INFO GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
 2019-03-14 13:55:11.3210 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
 2019-03-14 13:55:33.3805 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:46:57.4172 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-14 14:47:05.9712 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:47:06.0686 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-14 14:50:46.2626 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-14 14:51:02.0750 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:51:09.5989 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:53:44.8875 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-14 14:53:50.8372 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:54:03.0294 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:55:06.4944 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-14 14:55:28.1585 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.

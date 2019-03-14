@@ -40,45 +40,14 @@ namespace SelectionCommittee.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SelectionCommitteeApi")));
-            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SelectionCommitteeAuthentification")));
             services.AddMvc();
 
-            services.AddTransient<IAssessmentService, AssessmentService>();
-            services.AddTransient<IAssessmentRepository, AssessmentRepository>();
-
-            services.AddTransient<IEnrolleeService, EnrolleeService>();
-            services.AddTransient<IEnrolleeRepository, EnrolleeRepository>();
-
-            services.AddTransient<IFacultyService, FacultyService>();
-            services.AddTransient<IFacultyRepository, FacultyRepository>();
-
-            services.AddTransient<IFacultyEnrolleeRepository, FacultyEnrolleeRepository>();
-
-            services.AddTransient<IAuthentificationService, AuthentificationService>();
-
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-                });
+            services.ResolveDalDependencies(Configuration.GetConnectionString("SelectionCommitteeApi"));
+            services.ResolveServicesDependencies();
+            services.ResolveIdentityDependencies(Configuration.GetConnectionString("SelectionCommitteeAuthentification"));
+            services.RegisterSwagger();
 
             services.AddAutoMapper();
-            services.AddSingleton<ILoggerManager, LoggerManager>();
-            services.AddTransient<IEmailServiceKit, EmailServiceKit>();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Title = "Selection Committee API v1",
-                    Version = "v1"
-                });
-                //c.IncludeXmlComments(
-                //    @"bin\Debug\netcoreapp2.0\EstateAgency.API.xml");
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
