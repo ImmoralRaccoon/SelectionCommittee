@@ -125,7 +125,7 @@ namespace SelectionCommittee.BLL.Faculties.Services
         {
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
             var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.Enrollee)
-                .OrderBy(s => s.Rating);
+                .OrderByDescending(s => s.Rating).Take(faculty.NumberOfBudgetPlaces);
 
             _logger.LogInfo("GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
             return facultyEnrollees;

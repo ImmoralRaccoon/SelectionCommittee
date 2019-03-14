@@ -132,9 +132,8 @@ namespace SelectionCommittee.API.Controllers
         {
             var rank = await _enrolleeService.CalculateRatings();
             var enrollees = await _facultyService.GetFacultyEnrolleeIds(id);
-            //var emails = enrollees.
-            //var enrolleeIds = _mapper.Map<IEnumerable<EnrolleeIdModel>>(enrollees);
-            return Ok();
+            var enrolleeIds = _mapper.Map<IEnumerable<StatementModel>>(enrollees);
+            return Ok(enrolleeIds);
         }
     }
 }
