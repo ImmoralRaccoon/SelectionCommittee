@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SelectionCommittee.API.Models;
 using SelectionCommittee.API.Models.Faculties;
+using SelectionCommittee.API.Services.Faculties;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties;
 using SelectionCommittee.BLL.Faculties.Services;
@@ -19,12 +20,14 @@ namespace SelectionCommittee.API.Controllers
         private readonly IFacultyService _facultyService;
         private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
+        private readonly IFacultyResponseComposer _facultyResponseComposer;
 
-        public FacultiesController(IFacultyService facultyService, IMapper mapper, IEnrolleeService enrolleeService)
+        public FacultiesController(IFacultyService facultyService, IMapper mapper, IEnrolleeService enrolleeService, IFacultyResponseComposer facultyResponseComposer)
         {
             _facultyService = facultyService;
             _mapper = mapper;
             _enrolleeService = enrolleeService;
+            _facultyResponseComposer = facultyResponseComposer;
         }
 
         /// <summary>
@@ -33,11 +36,12 @@ namespace SelectionCommittee.API.Controllers
         /// <returns>Returns all faculties</returns>
         /// <response code="200">Always</response>
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllAsync()
         {
             var facultyDtos = await _facultyService.GetAllAsync();
-            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
-            return Ok(facultyModels);
+            var response = _facultyResponseComposer.ComposeForGetAll(facultyDtos);
+            return response;
         }
 
         /// <summary>
@@ -47,11 +51,12 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="200">Always</response>
         [Route("byName(a-z)")]
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllByNameFromAAsync()
         {
             var facultyDtos = await _facultyService.GetAllSortedByNameFromAAsync();
-            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
-            return Ok(facultyModels);
+            var response = _facultyResponseComposer.ComposeForGetAllByNameFromA(facultyDtos);
+            return response;
         }
 
         /// <summary>
@@ -61,11 +66,12 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="200">Always</response>
         [Route("byName(z-a)")]
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllByNameFromZAsync()
         {
             var facultyDtos = await _facultyService.GetAllSortedByNameFromZAsync();
-            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
-            return Ok(facultyModels);
+            var response = _facultyResponseComposer.ComposeForGetAllByNameFromZ(facultyDtos);
+            return response;
         }
 
         /// <summary>
@@ -75,25 +81,27 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="200">Always</response>
         [Route("byNumberOfPlaces")]
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllByNumberOfPlacesAsync()
         {
             var facultyDtos = await _facultyService.GetAllSortedByAmountOfPlacesAsync();
-            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
-            return Ok(facultyModels);
+            var response = _facultyResponseComposer.ComposeForGetAllByNumberOfPlaces(facultyDtos);
+            return response;
         }
 
         /// <summary>
-        /// Get all faculties sorted by number of budjet places.
+        /// Get all faculties sorted by number of budget places.
         /// </summary>
-        /// <returns>Returns all faculties sorted by number of budjet places</returns>
+        /// <returns>Returns all faculties sorted by number of budget places</returns>
         /// <response code="200">Always</response>
         [Route("byNumberOfBudgetPlaces")]
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllByNumberOfBudgetPlacesAsync()
         {
             var facultyDtos = await _facultyService.GetAllSortedByAmountofBudgetPlacesAsync();
-            var facultyModels = _mapper.Map<IEnumerable<FacultyModel>>(facultyDtos);
-            return Ok(facultyModels);
+            var response = _facultyResponseComposer.ComposeForGetAllByNumberOfBudgetPlaces(facultyDtos);
+            return response;
         }
 
         /// <summary>
@@ -104,11 +112,13 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="200">If the item exists</response>
         /// <response code="404">If the item is not found</response>
         [HttpGet("{id}", Name = "GetFaculty")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAsync(int id)
         {
             var facultyDto = await _facultyService.GetAsync(id);
-            var facultyModel = _mapper.Map<FacultyModel>(facultyDto);
-            return Ok(facultyModel);
+            var response = _facultyResponseComposer.ComposeForGet(facultyDto);
+            return response;
         }
 
         /// <summary>
@@ -118,8 +128,10 @@ namespace SelectionCommittee.API.Controllers
         /// <returns>Returns route to created faculty</returns>
         /// <response code="201">If the item created</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> AddAsync([FromBody] FacultyAddOrUpdateModel facultyAddOrUpdateModel)
         {
             if (!ModelState.IsValid)
@@ -127,9 +139,11 @@ namespace SelectionCommittee.API.Controllers
                 BadRequest();
             }
 
-            var facultyDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
-            var facultyCreateModel = await _facultyService.AddAsync(facultyDto);
-            return Ok(facultyCreateModel);
+            var facultyCreateDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
+            var statusCode = await _facultyService.AddAsync(facultyCreateDto);
+            //var response = _facultyResponseComposer.ComposeForCreate(statusCode, facultyCreateDto);
+            return Ok(statusCode);
+            //return response;
         }
 
         /// <summary>
@@ -139,8 +153,10 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="facultyAddOrUpdateModel">Faculty model</param>
         /// <response code="204">If the item updated</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpPut]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> UpdateAsync(int? id,
             [FromBody] FacultyAddOrUpdateModel facultyAddOrUpdateModel)
         {
@@ -152,14 +168,16 @@ namespace SelectionCommittee.API.Controllers
             {
                 var facultyUpdateDto = _mapper.Map<FacultyUpdateDto>(facultyAddOrUpdateModel);
                 facultyUpdateDto.Id = id.Value;
-                var faculty = await _facultyService.UpdateAsync(facultyUpdateDto);
-                return Ok(faculty);
+                var statusCode = await _facultyService.UpdateAsync(facultyUpdateDto);
+                var response = _facultyResponseComposer.ComposeForUpdate(statusCode);
+                return response;
             }
             else
             {
-                var facultyDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
-                var facultyCreateModel = await _facultyService.AddAsync(facultyDto);
-                return Ok(facultyCreateModel);
+                var facultyCreateDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
+                var statusCode = await _facultyService.AddAsync(facultyCreateDto);
+                var response = _facultyResponseComposer.ComposeForCreate(statusCode, facultyCreateDto);
+                return response;
             }
         }
 
@@ -169,12 +187,15 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="id">Faculty id</param>
         /// <response code="204">If the item deleted</response>
         /// <response code="404">If the item not found</response>
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Delete(int id)
         {
-            var response = await _facultyService.DeleteAsync(id);
-            return Ok(response);
+            var statusCode = await _facultyService.DeleteAsync(id);
+            var response = _facultyResponseComposer.ComposeForDelete(statusCode);
+            return response;
         }
 
         /// <summary>
@@ -182,18 +203,18 @@ namespace SelectionCommittee.API.Controllers
         /// </summary>
         /// <param name="id">Faculty id</param>
         /// <response code="200">If faculty has enrollees</response>
-        /// <response code="404">If thefaculty is empty</response>
+        /// <response code="404">If the faculty is empty</response>
         //[Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> TakeFacultiesEnrollees(int id)
+        public async Task<IActionResult> CreateStatementAsync(int id)
         {
-            var rank = await _enrolleeService.CalculateRatings();
-            var enrollees = await _facultyService.GetFacultyEnrolleeIds(id);
-            var enrolleeIds = _mapper.Map<IEnumerable<StatementModel>>(enrollees);
-            return Ok(enrolleeIds);
+            await _enrolleeService.CalculateRatings();
+            var enrollees = await _facultyService.GetFacultyEnrollees(id);
+            var response = _facultyResponseComposer.ComposeForCreateStatement(enrollees);
+            return response;
         }
     }
 }

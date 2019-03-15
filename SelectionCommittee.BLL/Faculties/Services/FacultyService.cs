@@ -86,6 +86,13 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<int> AddAsync(FacultyCreateDto facultyCreateDto)
         {
+            //if (string.IsNullOrEmpty(facultyCreateDto.Name))
+            //    return -1;
+            //if (facultyCreateDto.NumberOfPlaces == 0)
+            //    return -2;
+            //if (facultyCreateDto.NumberOfBudgetPlaces == 0)
+            //    return -3;
+
             var faculty = _mapper.Map<Faculty>(facultyCreateDto);
             await _selectionCommitteeDataStorage.FacultyRepository.AddAsync(faculty);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
@@ -96,6 +103,13 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<int> UpdateAsync(FacultyUpdateDto facultyUpdateDto)
         {
+            if (string.IsNullOrEmpty(facultyUpdateDto.Name))
+                return -1;
+            if (facultyUpdateDto.NumberOfPlaces == 0)
+                return -2;
+            if (facultyUpdateDto.NumberOfBudgetPlaces == 0)
+                return -3;
+
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(facultyUpdateDto.Id);
 
             faculty.Name = facultyUpdateDto.Name;
@@ -111,6 +125,9 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<int> DeleteAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(id))
+                return -4;
+
             _selectionCommitteeDataStorage.FacultyRepository.Delete(id);
 
             var facultyId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByFacultyId(id);
@@ -121,14 +138,15 @@ namespace SelectionCommittee.BLL.Faculties.Services
             return 1;
         }
 
-        public async Task<IEnumerable<Enrollee>> GetFacultyEnrolleeIds(int id)
+        public async Task<IEnumerable<StatementDto>> GetFacultyEnrollees(int id)
         {
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
             var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.Enrollee)
                 .OrderByDescending(s => s.Rating).Take(faculty.NumberOfBudgetPlaces);
+            var result = _mapper.Map<IEnumerable<StatementDto>>(facultyEnrollees);
 
             _logger.LogInfo("GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.");
-            return facultyEnrollees;
+            return result;
         }
     }
 }

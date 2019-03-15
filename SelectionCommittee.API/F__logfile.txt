@@ -71,3 +71,96 @@
 2019-03-14 21:56:47.0202 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
 2019-03-14 21:57:03.3039 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
 2019-03-15 10:09:34.2969 INFO GetAllSortedByNameFromAAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 16:59:14.5109 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 17:21:43.8528 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 17:21:51.0549 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 18:38:16.7271 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 18:38:16.9314 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 18:53:55.8682 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 18:53:56.1563 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 18:59:19.6649 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 18:59:40.6449 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 18:59:49.5733 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 18:59:49.7501 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:19:25.9006 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 19:19:38.9599 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:19:48.5209 INFO GetAllSortedByNameFromAAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:19:54.5576 INFO GetAllSortedByNameFromZAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:20:05.4669 INFO GetAllSortedByAmountOfPlacesAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:20:11.5304 INFO GetAllSortedByAmountofBudgetPlacesAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:20:44.7487 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:23:11.5087 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 19:23:59.0584 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:25:12.4768 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:26:34.9721 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:27:28.5160 INFO UpdateAsync(FacultyUpdateDto facultyUpdateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:27:34.8020 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:28:08.3756 INFO DeleteAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:33:17.9636 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 19:36:21.0394 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 19:36:28.3724 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:39:04.4963 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 19:47:05.3209 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:47:45.9632 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:50:23.4216 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:52:02.9485 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:56:44.6543 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:56:53.1569 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:56:58.6317 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 19:59:55.6660 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:00:25.3417 INFO UpdateAsync(FacultyUpdateDto facultyUpdateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:00:37.7288 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:00:52.6923 INFO DeleteAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:01:07.7600 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:01:12.1966 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:02:56.5729 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:03:06.6331 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:23:47.1528 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 20:23:58.1844 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 20:24:09.4079 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:24:17.8896 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:24:29.9808 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:24:44.5672 INFO UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:25:15.5587 INFO UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:25:26.4929 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:25:47.1240 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:26:28.2212 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:26:41.3115 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:27:54.0581 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:27:58.0299 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:28:04.5351 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:28:40.7178 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:28:46.3130 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:31:14.8733 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:31:38.5572 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:31:48.7082 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:32:03.3472 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:32:07.7685 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:32:16.3824 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 20:37:40.0617 INFO GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:48:46.5118 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:49:00.4723 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:49:03.7907 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:49:32.1373 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:50:26.2290 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:51:33.5923 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:52:28.3621 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:53:01.3286 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:53:08.1726 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:53:22.9571 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:53:25.3684 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:54:00.0370 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 20:54:19.0306 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:54:26.7246 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:54:28.8472 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:56:38.4518 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 20:56:40.1662 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 20:59:53.3250 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 21:00:21.9920 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 21:00:38.5531 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-15 21:00:39.8643 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 21:05:20.3527 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 21:05:44.0192 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 21:08:41.7281 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 21:12:40.8384 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 21:12:48.7072 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.

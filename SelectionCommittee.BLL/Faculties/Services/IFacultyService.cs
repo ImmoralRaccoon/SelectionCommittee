@@ -27,6 +27,7 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         Task<int> DeleteAsync(int id);
 
-        Task<IEnumerable<Enrollee>> GetFacultyEnrolleeIds(int id);
+        Task<IEnumerable<StatementDto>> GetFacultyEnrollees(int id);
+        //Task<IEnumerable<Enrollee>> GetFacultyEnrollees(int id);
     }
 }

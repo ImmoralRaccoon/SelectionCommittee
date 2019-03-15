@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SelectionCommittee.BLL.Faculties.Services;
 using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.BLL.Faculties
@@ -10,6 +11,7 @@ namespace SelectionCommittee.BLL.Faculties
             CreateMap<Faculty, FacultyDto>();
             CreateMap<FacultyDto, Faculty>();
             CreateMap<FacultyCreateDto, Faculty>();
+            CreateMap<Enrollee, StatementDto>();
         }
     }
 }
