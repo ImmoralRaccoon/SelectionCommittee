@@ -42,6 +42,13 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
         {
+            if (string.IsNullOrEmpty(assessmentCreateDto.Name))
+                return -1;
+            if (string.IsNullOrEmpty(assessmentCreateDto.GradeType))
+                return -2;
+            if (assessmentCreateDto.Grade == 0)
+                return -3;
+
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
 
             var assessment = new Assessment
@@ -63,6 +70,13 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto)
         {
+            if (string.IsNullOrEmpty(assessmentUpdateDto.Name))
+                return -1;
+            if (string.IsNullOrEmpty(assessmentUpdateDto.GradeType))
+                return -2;
+            if (assessmentUpdateDto.Grade == 0)
+                return -3;
+
             var assessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(assessmentUpdateDto.Id);
 
             assessment.Name = assessmentUpdateDto.Name;
@@ -78,6 +92,9 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> DeleteAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.AssessmentRepository.ContainsEntityWithId(id))
+                return -4;
+
             _selectionCommitteeDataStorage.AssessmentRepository.Delete(id);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
 

@@ -164,3 +164,14 @@
 2019-03-15 21:08:41.7281 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
 2019-03-15 21:12:40.8384 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
 2019-03-15 21:12:48.7072 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-15 22:01:16.4009 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-15 22:01:24.0143 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:04:25.3725 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:09:44.1803 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:11:22.0894 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:11:34.3194 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:12:00.1539 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:12:04.9261 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:14:17.8834 INFO UpdateAsync(AssessmentUpdateDto assessmentUpdateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:14:26.5802 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-15 22:17:39.9203 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.

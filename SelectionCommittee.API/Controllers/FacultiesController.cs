@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SelectionCommittee.API.Models;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.API.Services.Faculties;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.BLL.Faculties;
 using SelectionCommittee.BLL.Faculties.Services;
-using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.API.Controllers
 {
@@ -108,7 +103,7 @@ namespace SelectionCommittee.API.Controllers
         /// Get faculty by id.
         /// </summary>
         /// <param name="id">Faculty id</param>
-        /// <returns>Faculty by id</returns>
+        /// <returns>Returns faculty by id</returns>
         /// <response code="200">If the item exists</response>
         /// <response code="404">If the item is not found</response>
         [HttpGet("{id}", Name = "GetFaculty")]

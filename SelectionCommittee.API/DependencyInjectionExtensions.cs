@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SelectionCommittee.API.Services.Assessments;
 using SelectionCommittee.API.Services.Faculties;
 using SelectionCommittee.Authentication;
 using SelectionCommittee.Authentication.Services;
@@ -34,6 +35,7 @@ namespace SelectionCommittee.API
         {
             services.AddScoped<IAssessmentService, AssessmentService>();
             services.AddScoped<IAssessmentRepository, AssessmentRepository>();
+            services.AddScoped<IAssessmentResponseComposer, AssessmentResponseComposer>();
 
             services.AddScoped<IEnrolleeService, EnrolleeService>();
             services.AddScoped<IEnrolleeRepository, EnrolleeRepository>();
