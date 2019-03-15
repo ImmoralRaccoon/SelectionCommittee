@@ -27,6 +27,11 @@ namespace SelectionCommittee.API.Controllers
             _enrolleeService = enrolleeService;
         }
 
+        /// <summary>
+        /// Get all faculties.
+        /// </summary>
+        /// <returns>Returns all faculties</returns>
+        /// <response code="200">Always</response>
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -35,6 +40,11 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        /// <summary>
+        /// Get all faculties sorted by name(a-z).
+        /// </summary>
+        /// <returns>Returns all faculties sorted by name(a-z)</returns>
+        /// <response code="200">Always</response>
         [Route("byName(a-z)")]
         [HttpGet]
         public async Task<IActionResult> GetAllByNameFromAAsync()
@@ -44,6 +54,11 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        /// <summary>
+        /// Get all faculties sorted by name(z-a).
+        /// </summary>
+        /// <returns>Returns all faculties sorted by name(a-z)</returns>
+        /// <response code="200">Always</response>
         [Route("byName(z-a)")]
         [HttpGet]
         public async Task<IActionResult> GetAllByNameFromZAsync()
@@ -53,6 +68,11 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        /// <summary>
+        /// Get all faculties sorted by number of places.
+        /// </summary>
+        /// <returns>Returns all faculties sorted by number of places</returns>
+        /// <response code="200">Always</response>
         [Route("byNumberOfPlaces")]
         [HttpGet]
         public async Task<IActionResult> GetAllByNumberOfPlacesAsync()
@@ -62,6 +82,11 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        /// <summary>
+        /// Get all faculties sorted by number of budjet places.
+        /// </summary>
+        /// <returns>Returns all faculties sorted by number of budjet places</returns>
+        /// <response code="200">Always</response>
         [Route("byNumberOfBudgetPlaces")]
         [HttpGet]
         public async Task<IActionResult> GetAllByNumberOfBudgetPlacesAsync()
@@ -71,6 +96,13 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModels);
         }
 
+        /// <summary>
+        /// Get faculty by id.
+        /// </summary>
+        /// <param name="id">Faculty id</param>
+        /// <returns>Faculty by id</returns>
+        /// <response code="200">If the item exists</response>
+        /// <response code="404">If the item is not found</response>
         [HttpGet("{id}", Name = "GetFaculty")]
         public async Task<IActionResult> GetAsync(int id)
         {
@@ -79,6 +111,13 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyModel);
         }
 
+        /// <summary>
+        /// Creates a faculty.
+        /// </summary>
+        /// <param name="facultyAddOrUpdateModel">Faculty model</param>
+        /// <returns>Returns route to created faculty</returns>
+        /// <response code="201">If the item created</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] FacultyAddOrUpdateModel facultyAddOrUpdateModel)
@@ -93,6 +132,13 @@ namespace SelectionCommittee.API.Controllers
             return Ok(facultyCreateModel);
         }
 
+        /// <summary>
+        /// Uptades faculty.
+        /// </summary>
+        /// <param name="id">Faculty id</param>
+        /// <param name="facultyAddOrUpdateModel">Faculty model</param>
+        /// <response code="204">If the item updated</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "admin")]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(int? id,
@@ -117,6 +163,12 @@ namespace SelectionCommittee.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes faculty.
+        /// </summary>
+        /// <param name="id">Faculty id</param>
+        /// <response code="204">If the item deleted</response>
+        /// <response code="404">If the item not found</response>
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -125,9 +177,17 @@ namespace SelectionCommittee.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Create a statement.
+        /// </summary>
+        /// <param name="id">Faculty id</param>
+        /// <response code="200">If faculty has enrollees</response>
+        /// <response code="404">If thefaculty is empty</response>
         //[Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> TakeFacultiesEnrollees(int id)
         {
             var rank = await _enrolleeService.CalculateRatings();

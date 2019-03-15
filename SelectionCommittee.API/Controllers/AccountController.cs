@@ -15,6 +15,12 @@ namespace SelectionCommittee.API.Controllers
             _authentificationService = authentificationService;
         }
 
+        /// <summary>
+        /// Performs user log in.
+        /// </summary>
+        /// <param name="model">User log in model</param>
+        /// <response code="200">If the log in action succeeded</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [HttpPost("LogIn")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -28,6 +34,10 @@ namespace SelectionCommittee.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Performs user log out.
+        /// </summary>
+        /// <response code="200">Always</response>
         [HttpPost("LogOut")]
         [ProducesResponseType(200)]
         public async Task<IActionResult> LogOut()
@@ -36,6 +46,12 @@ namespace SelectionCommittee.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Performs user registration.
+        /// </summary>
+        /// <param name="model">User registration model</param>
+        /// <response code="200">If the registration action succeeded</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [HttpPost("Register")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

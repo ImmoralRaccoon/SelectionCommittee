@@ -69,11 +69,11 @@ namespace SelectionCommittee.API
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "Estate Agency API",
+                    Title = "Selection Committee API",
                     Version = "v1"
                 });
-                //c.IncludeXmlComments(
-                //    @"bin\Debug\netcoreapp2.0\EstateAgency.API.xml");
+                c.IncludeXmlComments(
+                    @"bin\Debug\netcoreapp2.0\SelectionCommittee.API.xml");
             });
 
             return services;
