@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.API.Services.Faculties;
@@ -123,7 +124,7 @@ namespace SelectionCommittee.API.Controllers
         /// <returns>Returns route to created faculty</returns>
         /// <response code="201">If the item created</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -148,7 +149,7 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="facultyAddOrUpdateModel">Faculty model</param>
         /// <response code="204">If the item updated</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpPut]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -182,7 +183,7 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="id">Faculty id</param>
         /// <response code="204">If the item deleted</response>
         /// <response code="404">If the item not found</response>
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -199,7 +200,7 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="id">Faculty id</param>
         /// <response code="200">If faculty has enrollees</response>
         /// <response code="404">If the faculty is empty</response>
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
         [ProducesResponseType(204)]

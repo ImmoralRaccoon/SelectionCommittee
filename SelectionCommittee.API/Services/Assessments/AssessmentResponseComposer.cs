@@ -41,7 +41,7 @@ namespace SelectionCommittee.API.Services.Assessments
                 case -3:
                     return new BadRequestObjectResult("Invalid assessment grade.");
                 default:
-                    return new CreatedAtRouteResult("Get assessment", new { Id = statusCode }, assessmentCreateDto);
+                    return new CreatedAtRouteResult("GetAssessment", new { Id = statusCode }, assessmentCreateDto);
             }
         }
 

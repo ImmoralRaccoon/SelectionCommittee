@@ -175,3 +175,8 @@
 2019-03-15 22:14:17.8834 INFO UpdateAsync(AssessmentUpdateDto assessmentUpdateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
 2019-03-15 22:14:26.5802 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
 2019-03-15 22:17:39.9203 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 10:06:35.7645 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 10:07:03.9731 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 10:11:38.0470 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 10:12:38.7436 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 10:13:29.5558 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.

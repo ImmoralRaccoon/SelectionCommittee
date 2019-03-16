@@ -69,7 +69,7 @@ namespace SelectionCommittee.API.Services.Faculties
                 case -3:
                     return new BadRequestObjectResult("Invalid number of budjet places.");
                 default:
-                    return new CreatedAtRouteResult("Get faculty", new { Id = statusCode }, facultyCreateDto);
+                    return new CreatedAtRouteResult("GetFaculty", new { Id = statusCode }, facultyCreateDto);
             }
         }
 

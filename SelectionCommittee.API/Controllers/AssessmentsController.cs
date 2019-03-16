@@ -10,7 +10,7 @@ using SelectionCommittee.BLL.Assessments.Services;
 
 namespace SelectionCommittee.API.Controllers
 {
-    //[Authorize(Roles = "user")]
+    [Authorize(Roles = "user")]
     [Route("api/[controller]")]
     public class AssessmentsController : Controller
     {
@@ -45,8 +45,10 @@ namespace SelectionCommittee.API.Controllers
         /// <param name="id">Assessment id</param>
         /// <returns>Returns assessment by id</returns>
         /// <response code="200">Always</response>
+        /// <response code="404">If the item is not found</response>
         [HttpGet("{id}", Name = "GetAssessment")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAsync(int id)
         {
             var assessmentDto = await _assessmentService.GetAsync(id);
@@ -72,8 +74,6 @@ namespace SelectionCommittee.API.Controllers
             }
 
             var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(assessmentAddOrUpdateModel);
-            var assessmentCreateModel = await _assessmentService.AddAsync(assessmentCreateDto);
-            return Ok(assessmentCreateModel);
             var statusCode = await _assessmentService.AddAsync(assessmentCreateDto);
             var response = _assessmentResponseComposer.ComposeForCreate(statusCode, assessmentCreateDto);
             return response;
