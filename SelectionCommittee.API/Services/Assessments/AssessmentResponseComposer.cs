@@ -35,10 +35,12 @@ namespace SelectionCommittee.API.Services.Assessments
             switch (statusCode)
             {
                 case -1:
-                    return new BadRequestObjectResult("Invalid assessment name.");
+                    return new BadRequestObjectResult("Invalid enrollee id.");
                 case -2:
-                    return new BadRequestObjectResult("Invalid assessment grade type.");
+                    return new BadRequestObjectResult("Invalid assessment name.");
                 case -3:
+                    return new BadRequestObjectResult("Invalid assessment grade type.");
+                case -4:
                     return new BadRequestObjectResult("Invalid assessment grade.");
                 default:
                     return new CreatedAtRouteResult("GetAssessment", new { Id = statusCode }, assessmentCreateDto);
@@ -50,10 +52,12 @@ namespace SelectionCommittee.API.Services.Assessments
             switch (statusCode)
             {
                 case -1:
-                    return new BadRequestObjectResult("Invalid assessment name.");
+                    return new BadRequestObjectResult("Invalid enrollee id.");
                 case -2:
-                    return new BadRequestObjectResult("Invalid assessment grade type.");
+                    return new BadRequestObjectResult("Invalid assessment name.");
                 case -3:
+                    return new BadRequestObjectResult("Invalid assessment grade type.");
+                case -4:
                     return new BadRequestObjectResult("Invalid assessment grade.");
                 default:
                     return new OkResult();
@@ -64,7 +68,7 @@ namespace SelectionCommittee.API.Services.Assessments
         {
             switch (statusCode)
             {
-                case -4:
+                case -5:
                     return new NotFoundResult();
                 default:
                     return new NoContentResult();

@@ -180,3 +180,12 @@
 2019-03-16 10:11:38.0470 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
 2019-03-16 10:12:38.7436 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
 2019-03-16 10:13:29.5558 INFO AddAsync(AssessmentCreateDto assessmentCreateDto) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-16 11:43:10.0114 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:49:34.0265 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:49:44.7651 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:52:45.2159 INFO UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:52:53.5370 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:53:21.7577 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:55:42.9761 INFO UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:55:58.4296 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-16 11:56:15.1350 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.

@@ -42,12 +42,14 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
         {
-            if (string.IsNullOrEmpty(assessmentCreateDto.Name))
+            if (assessmentCreateDto.EnrolleeId == 0)
                 return -1;
-            if (string.IsNullOrEmpty(assessmentCreateDto.GradeType))
+            if (string.IsNullOrEmpty(assessmentCreateDto.Name))
                 return -2;
-            if (assessmentCreateDto.Grade == 0)
+            if (string.IsNullOrEmpty(assessmentCreateDto.GradeType))
                 return -3;
+            if (assessmentCreateDto.Grade == 0)
+                return -4;
 
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
 
@@ -70,12 +72,14 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto)
         {
-            if (string.IsNullOrEmpty(assessmentUpdateDto.Name))
+            if (assessmentUpdateDto.EnrolleId == 0)
                 return -1;
-            if (string.IsNullOrEmpty(assessmentUpdateDto.GradeType))
+            if (string.IsNullOrEmpty(assessmentUpdateDto.Name))
                 return -2;
-            if (assessmentUpdateDto.Grade == 0)
+            if (string.IsNullOrEmpty(assessmentUpdateDto.GradeType))
                 return -3;
+            if (assessmentUpdateDto.Grade == 0)
+                return -4;
 
             var assessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(assessmentUpdateDto.Id);
 
@@ -93,7 +97,7 @@ namespace SelectionCommittee.BLL.Assessments.Services
         public async Task<int> DeleteAsync(int id)
         {
             if (!await _selectionCommitteeDataStorage.AssessmentRepository.ContainsEntityWithId(id))
-                return -4;
+                return -5;
 
             _selectionCommitteeDataStorage.AssessmentRepository.Delete(id);
             await _selectionCommitteeDataStorage.SaveChangesAsync();

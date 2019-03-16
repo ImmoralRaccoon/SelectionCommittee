@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Enrollees;
+using SelectionCommittee.API.Services.Enrollees;
 using SelectionCommittee.BLL.Enrollees;
 using SelectionCommittee.BLL.Enrollees.Services;
 using SelectionCommittee.DAL.EF;
@@ -17,34 +18,60 @@ namespace SelectionCommittee.API.Controllers
         private readonly IEnrolleeService _enrolleeService;
         private readonly IMapper _mapper;
         private readonly IEmailServiceKit _emailServiceKit;
+        private readonly IEnrolleeResponseComposer _enrolleeResponseComposer;
 
-        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper, IEmailServiceKit emailServiceKit)
+        public EnrolleeController(ApplicationDbContext context, IEnrolleeService enrolleeService, IMapper mapper, IEmailServiceKit emailServiceKit, IEnrolleeResponseComposer enrolleeResponseComposer)
         {
             _enrolleeService = enrolleeService;
             _mapper = mapper;
             _emailServiceKit = emailServiceKit;
+            _enrolleeResponseComposer = enrolleeResponseComposer;
         }
 
+        /// <summary>
+        /// Get all enrolles.
+        /// </summary>
+        /// <returns>Returns all enrolles</returns>
+        /// <response code="200">Always</response>
         [Authorize(Roles = "user")]
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<IActionResult> GetAllAsync()
         {
             var enrolleeDtos = await _enrolleeService.GetAllAsync();
-            var enrolleeModels = _mapper.Map<IEnumerable<EnrolleeModel>>(enrolleeDtos);
-            return Ok(enrolleeModels);
+            var response = _enrolleeResponseComposer.ComposeForGetAll(enrolleeDtos);
+            return response;
         }
 
+        /// <summary>
+        /// Get enrollee by id.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        /// <returns>Returns enrollee by id</returns>
+        /// <response code="200">Always</response>
+        /// <response code="404">If the item is not found</response>
         [Authorize(Roles = "user")]
         [HttpGet("{id}", Name = "GetEnrollee")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAsync(int id)
         {
             var enrolleeDto = await _enrolleeService.GetAsync(id);
-            var enrolleeModel = _mapper.Map<EnrolleeModel>(enrolleeDto);
-            return Ok(enrolleeModel);
+            var response = _enrolleeResponseComposer.ComposeForGet(enrolleeDto);
+            return response;
         }
 
+        /// <summary>
+        /// Creates an enrollee.
+        /// </summary>
+        /// <param name="enrolleeAddOrUpdateModel">Enrollee model</param>
+        /// <returns>Returns route to created enrollee</returns>
+        /// <response code="201">If the item created</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "user")]
         [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> AddAsync([FromBody] EnrolleeAddModel enrolleeAddOrUpdateModel)
         {
             if (!ModelState.IsValid)
@@ -53,13 +80,23 @@ namespace SelectionCommittee.API.Controllers
             }
 
             var enrolleeCreateDto = _mapper.Map<EnrolleCreateDto>(enrolleeAddOrUpdateModel);
-            var enrolleeCreateModel = await _enrolleeService.AddAsync(enrolleeCreateDto);
-            return Ok(enrolleeCreateModel);
+            var statusCode = await _enrolleeService.AddAsync(enrolleeCreateDto);
+            var response = _enrolleeResponseComposer.ComposeForCreate(statusCode, enrolleeCreateDto);
+            return response;
         }
 
+        /// <summary>
+        /// Add faculty to enrollee.
+        /// </summary>
+        /// <param name="facultyEnrolleeModel">Faculty enrollee model</param>
+        /// <returns></returns>
+        /// <response code="200">If operation is seccessful</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "user")]
         [Route("decouplingTable")]
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> AddAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
         {
             if (!ModelState.IsValid)
@@ -68,12 +105,22 @@ namespace SelectionCommittee.API.Controllers
             }
 
             var facultyEnrolleeCreateDto = _mapper.Map<FacultyEnrolleeCreateDto>(facultyEnrolleeModel);
-            var facultyEnrolleeCreateModel = await _enrolleeService.AddFacultyEnrolleeAsync(facultyEnrolleeCreateDto);
-            return Ok(facultyEnrolleeCreateModel);
+            var statusCode = await _enrolleeService.AddFacultyEnrolleeAsync(facultyEnrolleeCreateDto);
+            var response = _enrolleeResponseComposer.ComposeForDecouplingTable(statusCode);
+            return response;
         }
 
+        /// <summary>
+        /// Updates an enrollee.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        /// <param name="enrolleeAddOrUpdateModel">Enrollee add or update model</param>
+        /// <response code="204">If the item updated</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "user")]
         [HttpPut]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> UpdateAsync(int? id,
             [FromBody] EnrolleeUpdateModel enrolleeAddOrUpdateModel)
         {
@@ -86,20 +133,31 @@ namespace SelectionCommittee.API.Controllers
             {
                 var enrolleeUpdateDto = _mapper.Map<EnrolleeUpdateDto>(enrolleeAddOrUpdateModel);
                 enrolleeUpdateDto.Id = id.Value;
-                var enrollee = await _enrolleeService.UpdateAsync(enrolleeUpdateDto);
-                return Ok(enrollee);
+                var statusCode = await _enrolleeService.UpdateAsync(enrolleeUpdateDto);
+                var response = _enrolleeResponseComposer.ComposeForUpdate(statusCode);
+                return response;
             }
             else
             {
                 var enrolleeCreateDto = _mapper.Map<EnrolleCreateDto>(enrolleeAddOrUpdateModel);
-                var enrolleeCreateModel = await _enrolleeService.AddAsync(enrolleeCreateDto);
-                return Ok(enrolleeCreateModel);
+                var statusCode = await _enrolleeService.AddAsync(enrolleeCreateDto);
+                var response = _enrolleeResponseComposer.ComposeForCreate(statusCode, enrolleeCreateDto);
+                return response;
             }
         }
 
+        /// <summary>
+        /// Updates enrollee status.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        /// <param name="enrolleeUpdateStatusModel">Enrollee update status model</param>
+        /// <response code="200">If operation is seccessful</response>
+        /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "admin")]
         [Route("updateUserStatus")]
         [HttpPut]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> UpdateStatusAsync(int? id, [FromBody] EnrolleeUpdateStatusModel enrolleeUpdateStatusModel)
         {
             if (!ModelState.IsValid)
@@ -111,21 +169,36 @@ namespace SelectionCommittee.API.Controllers
             {
                 var enrolleeUpdateDto = _mapper.Map<EnrolleeUpdateStatusDto>(enrolleeUpdateStatusModel);
                 enrolleeUpdateDto.Id = id.Value;
-                var enrollee = await _enrolleeService.UpdateStatusAsync(enrolleeUpdateDto);
-                return Ok(enrollee);
+                var statusCode = await _enrolleeService.UpdateStatusAsync(enrolleeUpdateDto);
+                var response = _enrolleeResponseComposer.ComposeForUpdateStatus(statusCode);
+                return response;
             }
 
             return BadRequest();
         }
 
+        /// <summary>
+        /// Deletes enrollee.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        /// <response code="204">If the item deleted</response>
+        /// <response code="404">If the item not found</response>
         [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Delete(int id)
         {
-            var response = await _enrolleeService.DeleteAsync(id);
-            return Ok(response);
+            var statusCode = await _enrolleeService.DeleteAsync(id);
+            var response = _enrolleeResponseComposer.ComposeForDelete(statusCode);
+            return response;
         }
 
+        /// <summary>
+        /// Sends message to enrolle.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [Route("Kit/send-email")]
         public async Task<IActionResult> SendMessage(int id)

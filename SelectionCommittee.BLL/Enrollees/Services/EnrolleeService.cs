@@ -44,6 +44,21 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> AddAsync(EnrolleCreateDto enrolleCreateDto)
         {
+            if (string.IsNullOrEmpty(enrolleCreateDto.FirstName))
+                return -1;
+            if (string.IsNullOrEmpty(enrolleCreateDto.LastName))
+                return -2;
+            if (string.IsNullOrEmpty(enrolleCreateDto.Patronymic))
+                return -3;
+            if (string.IsNullOrEmpty(enrolleCreateDto.Email))
+                return -4;
+            if (string.IsNullOrEmpty(enrolleCreateDto.City))
+                return -5;
+            if (string.IsNullOrEmpty(enrolleCreateDto.Region))
+                return -6;
+            if (string.IsNullOrEmpty(enrolleCreateDto.SchoolLyceumName))
+                return -7;
+
             var enrollee = _mapper.Map<Enrollee>(enrolleCreateDto);
             await _selectionCommitteeDataStorage.EnrolleeRepository.AddAsync(enrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
@@ -54,6 +69,11 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto)
         {
+            if (facultyEnrolleeCreateDto.EnrolleeId == 0)
+                return -8;
+            if (facultyEnrolleeCreateDto.FacultyId == 0)
+                return -9;
+
             var facultyEnrollee = _mapper.Map<FacultyEnrollee>(facultyEnrolleeCreateDto);
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.AddAsync(facultyEnrollee);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
@@ -64,6 +84,17 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto)
         {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(enrolleeUpdateDto.Id))
+                return -12;
+            if (string.IsNullOrEmpty(enrolleeUpdateDto.Email))
+                return -4;
+            if (string.IsNullOrEmpty(enrolleeUpdateDto.City))
+                return -5;
+            if (string.IsNullOrEmpty(enrolleeUpdateDto.Region))
+                return -6;
+            if (string.IsNullOrEmpty(enrolleeUpdateDto.SchoolLyceumName))
+                return -7;
+
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateDto.Id);
 
             enrollee.City = enrolleeUpdateDto.City;
@@ -80,6 +111,12 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto)
         {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(
+                enrolleeUpdateStatusDto.Id))
+                return -13;
+            if (string.IsNullOrEmpty(enrolleeUpdateStatusDto.LockStatus))
+                return -10;
+
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateStatusDto.Id);
             enrollee.LockStatus = enrolleeUpdateStatusDto.LockStatus;
 
@@ -92,6 +129,9 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> DeleteAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(id))
+                return -11;
+
             _selectionCommitteeDataStorage.EnrolleeRepository.Delete(id);
             var enrolleeId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByEnrolleeId(id);
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.RemoveRange(enrolleeId);

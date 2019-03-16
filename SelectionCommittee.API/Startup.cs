@@ -1,29 +1,12 @@
 ﻿using System;
 using System.IO;
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using SelectionCommittee.Authentication;
-using SelectionCommittee.Authentication.Services;
-using SelectionCommittee.BLL.Assessments.Services;
-using SelectionCommittee.BLL.Enrollees.Services;
-using SelectionCommittee.BLL.Faculties.Services;
-using SelectionCommittee.DAL.EF;
-using SelectionCommittee.DAL.Repositories.Assessments;
-using SelectionCommittee.DAL.Repositories.Enrollees;
-using SelectionCommittee.DAL.Repositories.Faculties;
-using SelectionCommittee.DAL.Repositories.FacultyEnrollees;
-using SelectionCommittee.DAL.UnitOfWork;
-using SelectionCommittee.Email;
-using SelectionCommittee.Logger;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace SelectionCommittee.API
 {
