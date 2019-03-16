@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using SelectionCommittee.BLL.Assessments;
 using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.BLL.Enrollees.Services

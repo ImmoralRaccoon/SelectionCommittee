@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using SelectionCommittee.BLL.Enrollees;
 using SelectionCommittee.DAL.Entities;
 using SelectionCommittee.DAL.UnitOfWork;
 using SelectionCommittee.Logger;
@@ -86,12 +82,12 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<int> AddAsync(FacultyCreateDto facultyCreateDto)
         {
-            //if (string.IsNullOrEmpty(facultyCreateDto.Name))
-            //    return -1;
-            //if (facultyCreateDto.NumberOfPlaces == 0)
-            //    return -2;
-            //if (facultyCreateDto.NumberOfBudgetPlaces == 0)
-            //    return -3;
+            if (string.IsNullOrEmpty(facultyCreateDto.Name))
+                return -1;
+            if (facultyCreateDto.NumberOfPlaces == 0)
+                return -2;
+            if (facultyCreateDto.NumberOfBudgetPlaces == 0)
+                return -3;
 
             var faculty = _mapper.Map<Faculty>(facultyCreateDto);
             await _selectionCommitteeDataStorage.FacultyRepository.AddAsync(faculty);

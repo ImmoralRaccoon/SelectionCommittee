@@ -17,22 +17,6 @@ namespace SelectionCommittee.DAL.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<FacultyEnrollee>()
-            //    .HasKey(f => new {f.EnrolleeId, f.FacultyId});
-
-
-
-            //modelBuilder.Entity<FacultyEnrollee>()
-            //    .HasOne(fe => fe.Enrollee)
-            //    .WithMany(e => e.FacultyEnrolles)
-            //    .HasForeignKey(fe => fe.EnrolleeId);
-
-            //modelBuilder.Entity<FacultyEnrollee>()
-            //    .HasOne(fe => fe.Faculty)
-            //    .WithMany(f => f.FacultyEnrolles)
-            //    .HasForeignKey(fe => fe.FacultyId)
-            //    .OnDelete(DeleteBehavior.Restrict);
-
             DatabaseSeeder.Seed(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }

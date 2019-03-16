@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.BLL.Faculties;
-using SelectionCommittee.BLL.Faculties.Services;
 
 namespace SelectionCommittee.API.Services.Faculties
 {

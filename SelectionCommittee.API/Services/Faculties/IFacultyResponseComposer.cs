@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.BLL.Faculties;
-using SelectionCommittee.BLL.Faculties.Services;
 
 namespace SelectionCommittee.API.Services.Faculties
 {

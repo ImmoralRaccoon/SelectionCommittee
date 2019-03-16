@@ -1,4 +1,4 @@
-﻿namespace SelectionCommittee.BLL.Faculties.Services
+﻿namespace SelectionCommittee.BLL.Faculties
 {
     public class StatementDto
     {

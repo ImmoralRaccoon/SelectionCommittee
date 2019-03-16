@@ -137,7 +137,8 @@ namespace SelectionCommittee.API.Controllers
 
             var facultyCreateDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
             var statusCode = await _facultyService.AddAsync(facultyCreateDto);
-            return Ok(statusCode);
+            var response = _facultyResponseComposer.ComposeForCreate(statusCode, facultyCreateDto);
+            return response;
         }
 
         /// <summary>
