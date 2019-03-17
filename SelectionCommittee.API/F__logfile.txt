@@ -320,3 +320,70 @@
 2019-03-17 20:50:38.2263 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
 2019-03-17 20:56:07.5412 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
 2019-03-17 20:56:14.9197 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 21:25:15.8357 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-17 21:25:24.3075 INFO GetAllAsync() method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:25:31.6022 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:25:45.6028 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:26:39.6899 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:26:46.3120 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 21:26:49.7476 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:26:51.5084 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:27:03.1777 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:27:07.0666 WARN Invalid assessment id. Delete operation failed.
+2019-03-17 21:27:09.5799 WARN Invalid assessment id. Delete operation failed.
+2019-03-17 21:27:21.2230 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:27:26.8845 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 21:27:41.9829 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:27:48.2768 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:27:50.6345 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:29:18.3903 WARN Incorrect enrollee id. Delete operaion failed.
+2019-03-17 21:29:43.9529 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:29:51.5973 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:29:55.3035 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:30:22.4347 INFO UpdateStatusAsync(EnrolleeUpdateStatusDto enrolleeUpdateStatusDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:30:51.0223 INFO UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:31:00.4421 INFO GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:31:07.0016 INFO GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:31:19.6905 INFO GetEnrolleEmail(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:33:09.3816 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:33:32.1044 INFO UpdateAsync(FacultyUpdateDto facultyUpdateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:17.1197 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:24.2881 INFO GetAllSortedByNameFromAAsync() from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:31.6470 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:35.1721 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:55.0456 INFO DeleteAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:34:58.6496 WARN Incorrect faculty id. Delete operation failed.
+2019-03-17 21:35:10.3969 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:22.9232 WARN Incorrect enrollee id. Delete operaion failed.
+2019-03-17 21:35:24.9229 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:26.9745 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:28.3033 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:29.5418 INFO DeleteAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:31.6901 WARN Incorrect enrollee id. Delete operaion failed.
+2019-03-17 21:35:33.6251 WARN Incorrect enrollee id. Delete operaion failed.
+2019-03-17 21:35:37.9040 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:40.2274 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:40.8134 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:35:41.2823 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:39:08.2470 WARN Invalid assessment id.
+2019-03-17 21:39:14.2527 WARN Invalid assessment id.
+2019-03-17 21:40:28.1818 WARN Invalid assessment id.
+2019-03-17 21:48:37.0235 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-17 21:48:51.4623 INFO AddAsync(EnrolleCreateDto enrolleCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:48:55.6890 INFO GetAllAsync() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:49:09.1019 WARN Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.
+2019-03-17 21:49:14.0340 WARN Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.
+2019-03-17 21:49:18.3377 WARN Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.
+2019-03-17 21:49:25.8418 INFO GetAllAsync() method from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:49:31.6800 INFO AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 21:49:45.8799 WARN Incorrect enrollee id. Delete operaion failed.
+2019-03-17 21:50:02.5608 WARN Incorrect faculty id. Delete operation failed.
+2019-03-17 21:50:18.3254 WARN Incorrect FacultyUpdateModel. Update operation failed.
+2019-03-17 21:56:04.5413 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-17 21:56:18.8842 INFO AddAsync(FacultyCreateDto facultyCreateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:56:32.4831 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
+2019-03-17 21:56:34.8427 WARN Invalid faculty id.
+2019-03-17 21:56:41.3411 WARN Invalid faculty id.
+2019-03-17 21:56:45.9467 WARN Invalid faculty id.
+2019-03-17 21:56:50.2421 WARN Invalid faculty id.
+2019-03-17 21:56:53.5461 INFO UpdateAsync(FacultyUpdateDto facultyUpdateDto) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.

@@ -73,6 +73,12 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<FacultyDto> GetAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Invalid faculty id.");
+                return null;
+            }
+
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
             var facultyDto = _mapper.Map<FacultyDto>(faculty);
 
@@ -108,6 +114,12 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<int> UpdateAsync(FacultyUpdateDto facultyUpdateDto)
         {
+            if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(facultyUpdateDto.Id))
+            {
+                _logger.LogWarn("Invalid faculty id.");
+                return -5;
+            }
+
             if (string.IsNullOrEmpty(facultyUpdateDto.Name))
             {
                 _logger.LogWarn("Incorrect FacultyUpdateModel. Update operation failed.");

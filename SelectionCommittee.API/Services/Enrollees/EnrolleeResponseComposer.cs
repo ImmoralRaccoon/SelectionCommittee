@@ -23,6 +23,9 @@ namespace SelectionCommittee.API.Services.Enrollees
 
         public ActionResult ComposeForGet(EnrolleDto enrolleDto)
         {
+            if (enrolleDto == null)
+                return new NotFoundResult();
+
             var enrolleeModel = _mapper.Map<EnrolleeModel>(enrolleDto);
             return new OkObjectResult(enrolleeModel);
         }

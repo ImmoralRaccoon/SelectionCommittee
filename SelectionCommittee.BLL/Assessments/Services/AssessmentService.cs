@@ -33,6 +33,12 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<AssessmentDto> GetAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.AssessmentRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Invalid assessment id.");
+                return null;
+            }
+
             var assessmnet = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(id);
             var assessmentDto = _mapper.Map<AssessmentDto>(assessmnet);
 

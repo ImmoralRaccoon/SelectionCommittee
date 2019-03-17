@@ -86,6 +86,8 @@ namespace SelectionCommittee.API.Services.Faculties
                     return new BadRequestObjectResult("Invalid number of places.");
                 case -3:
                     return new BadRequestObjectResult("Invalid number of budjet places.");
+                case -5:
+                    return new NotFoundResult();
                 default:
                     return new OkResult();
             }

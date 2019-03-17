@@ -33,6 +33,12 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<EnrolleDto> GetAsync(int id)
         {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Invalid enrollee id.");
+                return null;
+            }
+
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
             var enrolleeDto = _mapper.Map<EnrolleDto>(enrollee);
 
@@ -88,12 +94,12 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<int> AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto)
         {
-            if (facultyEnrolleeCreateDto.EnrolleeId == 0)
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(facultyEnrolleeCreateDto.EnrolleeId))
             {
                 _logger.LogWarn("Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.");
                 return -8;
             }
-            if (facultyEnrolleeCreateDto.FacultyId == 0)
+            if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(facultyEnrolleeCreateDto.FacultyId))
             {
                 _logger.LogWarn("Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.");
                 return -9;

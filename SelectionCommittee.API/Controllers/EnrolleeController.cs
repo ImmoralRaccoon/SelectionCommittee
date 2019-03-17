@@ -96,7 +96,7 @@ namespace SelectionCommittee.API.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> AddAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
+        public async Task<IActionResult> AddFacultyToEnrolleeAsync([FromBody] FacultyEnrolleeAddModel facultyEnrolleeModel)
         {
             if (!ModelState.IsValid)
             {

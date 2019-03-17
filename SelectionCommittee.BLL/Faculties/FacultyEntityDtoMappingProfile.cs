@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using SelectionCommittee.BLL.Faculties.Services;
 using SelectionCommittee.DAL.Entities;
 
 namespace SelectionCommittee.BLL.Faculties
