@@ -1,19 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models;
 using SelectionCommittee.API.Models.Faculties;
 using SelectionCommittee.BLL.Faculties;
+using SelectionCommittee.Logger;
 
 namespace SelectionCommittee.API.Services.Faculties
 {
     public class FacultyResponseComposer : IFacultyResponseComposer
     {
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public FacultyResponseComposer(IMapper mapper)
+        public FacultyResponseComposer(IMapper mapper, ILoggerManager logger)
         {
             _mapper = mapper;
+            _logger = logger;
         }
 
         public IActionResult ComposeForGetAll(IEnumerable<FacultyDto> facultyDtos)
@@ -100,6 +104,15 @@ namespace SelectionCommittee.API.Services.Faculties
 
         public IActionResult ComposeForCreateStatement(IEnumerable<StatementDto> statementDtos)
         {
+            if(statementDtos==null)
+                return new BadRequestObjectResult("Invalid faculty id.");
+
+            if (!statementDtos.Any())
+            {
+                _logger.LogWarn("Empty faculty. Operation failed.");
+                return new BadRequestObjectResult("Faculty has no enrollees.");
+            }
+
             var statementModel = _mapper.Map<IEnumerable<StatementModel>>(statementDtos);
             return new OkObjectResult(statementModel);
         }

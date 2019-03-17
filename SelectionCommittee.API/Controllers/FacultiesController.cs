@@ -194,19 +194,33 @@ namespace SelectionCommittee.API.Controllers
         }
 
         /// <summary>
+        /// Calculate ratings for all enrollees and sort them by rating.
+        /// </summary>
+        /// <returns>Calculated ratings</returns>
+        /// <response code="200">Always</response>
+        [Authorize(Roles = "admin")]
+        [Route("calculateRatings")]
+        [HttpGet]
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> CalculateRatings()
+        {
+            await _enrolleeService.CalculateRatings();
+            return Ok("Enrollees rating have been calculated.");
+        }
+
+        /// <summary>
         /// Create a statement.
         /// </summary>
         /// <param name="id">Faculty id</param>
         /// <response code="200">If faculty has enrollees</response>
-        /// <response code="404">If the faculty is empty</response>
+        /// <response code="400">If the faculty is empty or doesn`t exist</response>
         [Authorize(Roles = "admin")]
         [Route("createFacultyStatement")]
         [HttpGet]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> CreateStatementAsync(int id)
         {
-            await _enrolleeService.CalculateRatings();
             var enrollees = await _facultyService.GetFacultyEnrollees(id);
             var response = _facultyResponseComposer.ComposeForCreateStatement(enrollees);
             return response;

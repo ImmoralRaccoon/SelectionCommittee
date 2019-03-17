@@ -83,11 +83,20 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<int> AddAsync(FacultyCreateDto facultyCreateDto)
         {
             if (string.IsNullOrEmpty(facultyCreateDto.Name))
+            {
+                _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
                 return -1;
+            }
             if (facultyCreateDto.NumberOfPlaces == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
                 return -2;
+            }
             if (facultyCreateDto.NumberOfBudgetPlaces == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
                 return -3;
+            }
 
             var faculty = _mapper.Map<Faculty>(facultyCreateDto);
             await _selectionCommitteeDataStorage.FacultyRepository.AddAsync(faculty);
@@ -100,11 +109,20 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<int> UpdateAsync(FacultyUpdateDto facultyUpdateDto)
         {
             if (string.IsNullOrEmpty(facultyUpdateDto.Name))
+            {
+                _logger.LogWarn("Incorrect FacultyUpdateModel. Update operation failed.");
                 return -1;
+            }
             if (facultyUpdateDto.NumberOfPlaces == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyUpdateModel. Update operation failed.");
                 return -2;
+            }
             if (facultyUpdateDto.NumberOfBudgetPlaces == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyUpdateModel. Update operation failed.");
                 return -3;
+            }
 
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(facultyUpdateDto.Id);
 
@@ -122,7 +140,10 @@ namespace SelectionCommittee.BLL.Faculties.Services
         public async Task<int> DeleteAsync(int id)
         {
             if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Incorrect faculty id. Delete operation failed.");
                 return -4;
+            }
 
             _selectionCommitteeDataStorage.FacultyRepository.Delete(id);
 
@@ -136,6 +157,9 @@ namespace SelectionCommittee.BLL.Faculties.Services
 
         public async Task<IEnumerable<StatementDto>> GetFacultyEnrollees(int id)
         {
+            if (!await _selectionCommitteeDataStorage.FacultyRepository.ContainsEntityWithId(id))
+                return null;
+
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(id);
             var facultyEnrollees = faculty.FacultyEnrolles.Where(fe => fe.FacultyId == id).Select(e => e.Enrollee)
                 .OrderByDescending(s => s.Rating).Take(faculty.NumberOfBudgetPlaces);

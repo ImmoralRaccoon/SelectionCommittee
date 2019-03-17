@@ -43,19 +43,40 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<int> AddAsync(EnrolleCreateDto enrolleCreateDto)
         {
             if (string.IsNullOrEmpty(enrolleCreateDto.FirstName))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -1;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.LastName))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -2;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.Patronymic))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -3;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.Email))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -4;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.City))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -5;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.Region))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -6;
+            }
             if (string.IsNullOrEmpty(enrolleCreateDto.SchoolLyceumName))
+            {
+                _logger.LogWarn("Incorrect EnrolleeCreateModel. Create operation failed.");
                 return -7;
+            }
 
             var enrollee = _mapper.Map<Enrollee>(enrolleCreateDto);
             await _selectionCommitteeDataStorage.EnrolleeRepository.AddAsync(enrollee);
@@ -68,9 +89,15 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<int> AddFacultyEnrolleeAsync(FacultyEnrolleeCreateDto facultyEnrolleeCreateDto)
         {
             if (facultyEnrolleeCreateDto.EnrolleeId == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.");
                 return -8;
+            }
             if (facultyEnrolleeCreateDto.FacultyId == 0)
+            {
+                _logger.LogWarn("Incorrect FacultyEnrolleeCreateModel. AddFacultyEnrollee operation failed.");
                 return -9;
+            }
 
             var facultyEnrollee = _mapper.Map<FacultyEnrollee>(facultyEnrolleeCreateDto);
             await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.AddAsync(facultyEnrollee);
@@ -83,15 +110,30 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<int> UpdateAsync(EnrolleeUpdateDto enrolleeUpdateDto)
         {
             if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(enrolleeUpdateDto.Id))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
                 return -12;
+            }
             if (string.IsNullOrEmpty(enrolleeUpdateDto.Email))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
                 return -4;
+            }
             if (string.IsNullOrEmpty(enrolleeUpdateDto.City))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
                 return -5;
+            }
             if (string.IsNullOrEmpty(enrolleeUpdateDto.Region))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
                 return -6;
+            }
             if (string.IsNullOrEmpty(enrolleeUpdateDto.SchoolLyceumName))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
                 return -7;
+            }
 
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateDto.Id);
 
@@ -111,9 +153,15 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         {
             if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(
                 enrolleeUpdateStatusDto.Id))
+            {
+                _logger.LogWarn("Incorrect UpdateStatusModel. UpdateStatus operation failed.");
                 return -13;
+            }
             if (string.IsNullOrEmpty(enrolleeUpdateStatusDto.LockStatus))
+            {
+                _logger.LogWarn("Incorrect UpdateStatusModel. UpdateStatus operation failed.");
                 return -10;
+            }
 
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(enrolleeUpdateStatusDto.Id);
             enrollee.LockStatus = enrolleeUpdateStatusDto.LockStatus;
@@ -128,7 +176,10 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<int> DeleteAsync(int id)
         {
             if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Incorrect enrollee id. Delete operaion failed.");
                 return -11;
+            }
 
             _selectionCommitteeDataStorage.EnrolleeRepository.Delete(id);
             var enrolleeId = await _selectionCommitteeDataStorage.FacultyEnrolleeRepository.GetByEnrolleeId(id);
@@ -143,7 +194,11 @@ namespace SelectionCommittee.BLL.Enrollees.Services
         public async Task<IEnumerable<Enrollee>> CalculateRatings()
         {
             var enrollees = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAll().ToListAsync();
-
+            if (enrollees==null)
+            {
+                _logger.LogError("Enrollees table is empty. Unable to sort enrolles.");
+                return null;
+            }
 
             foreach (Enrollee enrollee in enrollees)
             {

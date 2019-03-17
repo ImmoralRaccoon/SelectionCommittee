@@ -42,13 +42,25 @@ namespace SelectionCommittee.BLL.Assessments.Services
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
         {
             if (assessmentCreateDto.EnrolleeId == 0)
+            {
+                _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -1;
+            }
             if (string.IsNullOrEmpty(assessmentCreateDto.Name))
+            {
+                _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -2;
+            }
             if (string.IsNullOrEmpty(assessmentCreateDto.GradeType))
+            {
+                _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -3;
+            }
             if (assessmentCreateDto.Grade == 0)
+            {
+                _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -4;
+            }
 
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
 
@@ -72,13 +84,25 @@ namespace SelectionCommittee.BLL.Assessments.Services
         public async Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto)
         {
             if (assessmentUpdateDto.EnrolleId == 0)
+            {
+                _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
                 return -1;
+            }
             if (string.IsNullOrEmpty(assessmentUpdateDto.Name))
+            {
+                _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
                 return -2;
+            }
             if (string.IsNullOrEmpty(assessmentUpdateDto.GradeType))
+            {
+                _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
                 return -3;
+            }
             if (assessmentUpdateDto.Grade == 0)
+            {
+                _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
                 return -4;
+            }
 
             var assessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(assessmentUpdateDto.Id);
 
@@ -96,7 +120,10 @@ namespace SelectionCommittee.BLL.Assessments.Services
         public async Task<int> DeleteAsync(int id)
         {
             if (!await _selectionCommitteeDataStorage.AssessmentRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Invalid assessment id. Delete operation failed.");
                 return -5;
+            }
 
             _selectionCommitteeDataStorage.AssessmentRepository.Delete(id);
             await _selectionCommitteeDataStorage.SaveChangesAsync();
