@@ -41,5 +41,12 @@ namespace SelectionCommittee.API.Services.Assessments
         /// <param name="statusCode">Code representing status of deleting operation</param>
         /// <returns>Returns action result for Delete action in AssessmentsController</returns>
         ActionResult ComposeForDelete(int statusCode);
+
+        /// <summary>
+        /// Compose response code for GetAssessmentsForEnrollee action in AssessmentsController.
+        /// </summary>
+        /// <param name="assessmentDtos">Code representing status of getting operation</param>
+        /// <returns>Returns action result for GetAssessmentsForEnrollee action in AssessmentsController</returns>
+        ActionResult ComposeForGetAssessmentsForEnrollee(IEnumerable<AssessmentDto> assessmentDtos);
     }
 }

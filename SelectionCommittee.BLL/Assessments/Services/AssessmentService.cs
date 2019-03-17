@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -130,6 +131,22 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
             _logger.LogInfo("DeleteAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
             return 1;
+        }
+
+        public async Task<IEnumerable<AssessmentDto>> GetAllAssessmentsForEnrollee(int id)
+        {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogError("Enrollees table is empty. Unable to get assessment for uncreated enrollee.");
+                return null;
+            }
+
+            var enrolleesAssessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAll()
+                .Where(a => a.EnrolleeId == id).ToListAsync();
+            var assessmentDto = _mapper.Map<IEnumerable<AssessmentDto>>(enrolleesAssessment);
+
+            _logger.LogInfo("GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.");
+            return assessmentDto;
         }
     }
 }

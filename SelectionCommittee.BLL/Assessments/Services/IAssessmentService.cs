@@ -14,5 +14,7 @@ namespace SelectionCommittee.BLL.Assessments.Services
         Task<int> UpdateAsync(AssessmentUpdateDto assessmentUpdateDto);
 
         Task<int> DeleteAsync(int id);
+
+        Task<IEnumerable<AssessmentDto>> GetAllAssessmentsForEnrollee(int id);
     }
 }

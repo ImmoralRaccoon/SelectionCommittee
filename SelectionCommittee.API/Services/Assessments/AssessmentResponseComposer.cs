@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SelectionCommittee.API.Models.Assessments;
@@ -73,6 +74,17 @@ namespace SelectionCommittee.API.Services.Assessments
                 default:
                     return new NoContentResult();
             }
+        }
+
+        public ActionResult ComposeForGetAssessmentsForEnrollee(IEnumerable<AssessmentDto> assessmentDtos)
+        {
+            if (assessmentDtos == null)
+                return new BadRequestObjectResult("Invalid enrollee id.");
+
+            if (!assessmentDtos.Any())
+                return new BadRequestObjectResult("Enrollee doesn`t have assessments yet.");
+
+            return new OkObjectResult(assessmentDtos);
         }
     }
 }

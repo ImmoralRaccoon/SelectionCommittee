@@ -56,6 +56,24 @@ namespace SelectionCommittee.API.Controllers
         }
 
         /// <summary>
+        /// Get all assessments for one enrollee by id.
+        /// </summary>
+        /// <param name="id">Enrollee id</param>
+        /// <returns>Returns assessments for enrollee by id</returns>
+        /// <response code="200">If enrollee has assessments</response>
+        /// <response code="400">If enrollee doesn`t exist or doesn`t have assessments</response>
+        [Route("getAllAssessmentsForEnrollee")]
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetAssessmentsForEnrollee(int id)
+        {
+            var assessmentDto = await _assessmentService.GetAllAssessmentsForEnrollee(id);
+            var response = _assessmentResponseComposer.ComposeForGetAssessmentsForEnrollee(assessmentDto);
+            return response;
+        }
+
+        /// <summary>
         /// Creates an assessment.
         /// </summary>
         /// <param name="assessmentAddOrUpdateModel">Assessment model</param>

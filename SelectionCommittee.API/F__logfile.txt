@@ -307,3 +307,16 @@
 2019-03-17 16:39:18.9925 INFO GetFacultyEnrolleeIds(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
 2019-03-17 16:39:22.9455 WARN Empty faculty. Operation failed.
 2019-03-17 16:39:40.5937 INFO CalculateRatings() method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
+2019-03-17 20:12:26.1045 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-17 20:12:47.0760 INFO GetAsync(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:34:52.8359 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:35:18.7074 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:35:58.2140 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:39:47.8090 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 20:45:33.0552 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 20:45:54.5944 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:46:43.7934 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 20:49:32.8838 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 20:50:38.2263 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
+2019-03-17 20:56:07.5412 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-17 20:56:14.9197 ERROR Enrollees table is empty. Unable to get assessment for uncreated enrollee.
