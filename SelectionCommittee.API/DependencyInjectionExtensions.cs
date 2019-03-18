@@ -35,15 +35,12 @@ namespace SelectionCommittee.API
         public static IServiceCollection ResolveServicesDependencies(this IServiceCollection services)
         {
             services.AddScoped<IAssessmentService, AssessmentService>();
-            services.AddScoped<IAssessmentRepository, AssessmentRepository>();
             services.AddScoped<IAssessmentResponseComposer, AssessmentResponseComposer>();
 
             services.AddScoped<IEnrolleeService, EnrolleeService>();
-            services.AddScoped<IEnrolleeRepository, EnrolleeRepository>();
             services.AddScoped<IEnrolleeResponseComposer, EnrolleeResponseComposer>();
 
             services.AddScoped<IFacultyService, FacultyService>();
-            services.AddScoped<IFacultyRepository, FacultyRepository>();
             services.AddScoped<IFacultyResponseComposer, FacultyResponseComposer>();
 
             services.AddScoped<IFacultyEnrolleeRepository, FacultyEnrolleeRepository>();
