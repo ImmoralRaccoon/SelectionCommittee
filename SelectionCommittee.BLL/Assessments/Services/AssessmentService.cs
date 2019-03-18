@@ -48,7 +48,7 @@ namespace SelectionCommittee.BLL.Assessments.Services
 
         public async Task<int> AddAsync(AssessmentCreateDto assessmentCreateDto)
         {
-            if (assessmentCreateDto.EnrolleeId == 0)
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(assessmentCreateDto.EnrolleId))
             {
                 _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -1;
@@ -68,8 +68,13 @@ namespace SelectionCommittee.BLL.Assessments.Services
                 _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
                 return -4;
             }
+            if (assessmentCreateDto.Grade > 12)
+            {
+                _logger.LogWarn("Incorrect AssessmentCreateModel. Create operation failed.");
+                return -6;
+            }
 
-            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleeId);
+            var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(assessmentCreateDto.EnrolleId);
 
             var assessment = new Assessment
             {
@@ -109,6 +114,11 @@ namespace SelectionCommittee.BLL.Assessments.Services
             {
                 _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
                 return -4;
+            }
+            if (assessmentUpdateDto.Grade > 12)
+            {
+                _logger.LogWarn("Incorrect AssessmentUpdateModel. Update operation failed.");
+                return -6;
             }
 
             var assessment = await _selectionCommitteeDataStorage.AssessmentRepository.GetAsync(assessmentUpdateDto.Id);

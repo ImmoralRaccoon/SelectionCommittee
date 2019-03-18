@@ -153,7 +153,7 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="200">If operation is seccessful</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
         [Authorize(Roles = "admin")]
-        [Route("updateUserStatus")]
+        [Route("updateEnrolleeStatus")]
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

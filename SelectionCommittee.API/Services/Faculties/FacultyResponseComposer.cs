@@ -71,6 +71,10 @@ namespace SelectionCommittee.API.Services.Faculties
                     return new BadRequestObjectResult("Invalid number of places.");
                 case -3:
                     return new BadRequestObjectResult("Invalid number of budjet places.");
+                case -6:
+                    return new BadRequestObjectResult("Invalid faculty number of places (can`t be greater than 255).");
+                case -7:
+                    return new BadRequestObjectResult("Invalid faculty number of budget places (can`t be greater than 255).");
                 default:
                     return new CreatedAtRouteResult("GetFaculty", new { Id = statusCode }, facultyCreateDto);
             }
@@ -88,6 +92,10 @@ namespace SelectionCommittee.API.Services.Faculties
                     return new BadRequestObjectResult("Invalid number of budjet places.");
                 case -5:
                     return new NotFoundResult();
+                case -6:
+                    return new BadRequestObjectResult("Invalid faculty number of places (can`t be greater than 255).");
+                case -7:
+                    return new BadRequestObjectResult("Invalid faculty number of budget places (can`t be greater than 255).");
                 default:
                     return new OkResult();
             }

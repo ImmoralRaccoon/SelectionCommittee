@@ -10,6 +10,7 @@ namespace SelectionCommittee.BLL.Faculties
             CreateMap<Faculty, FacultyDto>();
             CreateMap<FacultyDto, Faculty>();
             CreateMap<FacultyCreateDto, Faculty>();
+            CreateMap<FacultyUpdateDto, Faculty>();
             CreateMap<Enrollee, StatementDto>();
         }
     }

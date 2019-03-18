@@ -2,7 +2,7 @@
 {
     public class AssessmentCreateDto
     {
-        public int EnrolleeId { get; set; }
+        public int EnrolleId { get; set; }
 
         public string Name { get; set; }
         public byte Grade { get; set; }

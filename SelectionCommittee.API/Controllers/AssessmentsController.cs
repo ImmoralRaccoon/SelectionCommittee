@@ -104,7 +104,7 @@ namespace SelectionCommittee.API.Controllers
         /// <response code="204">If the item updated</response>
         /// <response code="400">If the model is invalid or contains invalid data</response>
         [HttpPut]
-        [ProducesResponseType(204)]
+        [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> UpdateAsync(int? id, [FromBody]AssessmentAddOrUpdateModel assessmentAddOrUpdateModel)
         {

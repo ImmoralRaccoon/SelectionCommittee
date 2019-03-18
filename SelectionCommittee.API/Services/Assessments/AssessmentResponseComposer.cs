@@ -43,6 +43,8 @@ namespace SelectionCommittee.API.Services.Assessments
                     return new BadRequestObjectResult("Invalid assessment grade type.");
                 case -4:
                     return new BadRequestObjectResult("Invalid assessment grade.");
+                case -6:
+                    return new BadRequestObjectResult("Invalid assessment grade (can`t be greater than 12).");
                 default:
                     return new CreatedAtRouteResult("GetAssessment", new { Id = statusCode }, assessmentCreateDto);
             }
@@ -60,6 +62,8 @@ namespace SelectionCommittee.API.Services.Assessments
                     return new BadRequestObjectResult("Invalid assessment grade type.");
                 case -4:
                     return new BadRequestObjectResult("Invalid assessment grade.");
+                case -6:
+                    return new BadRequestObjectResult("Invalid assessment grade (can`t be greater than 12).");
                 default:
                     return new OkResult();
             }

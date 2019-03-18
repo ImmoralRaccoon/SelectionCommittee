@@ -103,6 +103,16 @@ namespace SelectionCommittee.BLL.Faculties.Services
                 _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
                 return -3;
             }
+            if (facultyCreateDto.NumberOfPlaces>255)
+            {
+                _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
+                return -6;
+            }
+            if (facultyCreateDto.NumberOfBudgetPlaces > 255)
+            {
+                _logger.LogWarn("Incorrect FacultyCreateModel. Create operation failed.");
+                return -7;
+            }
 
             var faculty = _mapper.Map<Faculty>(facultyCreateDto);
             await _selectionCommitteeDataStorage.FacultyRepository.AddAsync(faculty);
@@ -134,6 +144,16 @@ namespace SelectionCommittee.BLL.Faculties.Services
             {
                 _logger.LogWarn("Incorrect FacultyUpdateModel. Update operation failed.");
                 return -3;
+            }
+            if (facultyUpdateDto.NumberOfPlaces > 255)
+            {
+                _logger.LogWarn("Incorrect FacultyUpdateModel. Create operation failed.");
+                return -6;
+            }
+            if (facultyUpdateDto.NumberOfBudgetPlaces > 255)
+            {
+                _logger.LogWarn("Incorrect FacultyUpdateModel. Create operation failed.");
+                return -7;
             }
 
             var faculty = await _selectionCommitteeDataStorage.FacultyRepository.GetAsync(facultyUpdateDto.Id);
