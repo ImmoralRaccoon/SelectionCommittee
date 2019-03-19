@@ -496,3 +496,6 @@
 2019-03-18 22:03:13.5453 INFO GetAsync(int id) method from SelectionCommittee.BLL.Enrollees.Services.EnrolleeService has been finished.
 2019-03-18 22:03:25.4220 INFO GetAsync(int id) from SelectionCommittee.BLL.Faculties.Services.FacultyService has been finished.
 2019-03-18 22:03:32.8441 INFO LogOut() method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-19 12:21:15.2308 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-19 12:21:32.0085 WARN Incorrect EnrolleeUpdateModel. Update operation failed.
+2019-03-19 12:21:49.8241 INFO LogOut() method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.

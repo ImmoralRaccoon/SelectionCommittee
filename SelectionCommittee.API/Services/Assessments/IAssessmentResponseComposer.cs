@@ -24,7 +24,7 @@ namespace SelectionCommittee.API.Services.Assessments
         /// Composes response code for Add action in AssessmentsControler.
         /// </summary>
         /// <param name="statusCode">Code representing status of assessment addition operation</param>
-        /// <param name="assessmentCreateDto">Assessment DTO</param>
+        /// <param name="assessmentCreateDto">Assessment DTO for creation</param>
         /// <returns>Returns action result for Add action in AssessmentsController</returns>
         ActionResult ComposeForCreate(int statusCode, AssessmentCreateDto assessmentCreateDto);
 

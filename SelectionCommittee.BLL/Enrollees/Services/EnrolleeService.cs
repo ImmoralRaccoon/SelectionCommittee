@@ -220,6 +220,11 @@ namespace SelectionCommittee.BLL.Enrollees.Services
 
         public async Task<string> GetEnrolleEmail(int id)
         {
+            if (!await _selectionCommitteeDataStorage.EnrolleeRepository.ContainsEntityWithId(id))
+            {
+                _logger.LogWarn("Incorrect EnrolleeUpdateModel. Update operation failed.");
+                return null;
+            }
             var enrollee = await _selectionCommitteeDataStorage.EnrolleeRepository.GetAsync(id);
             var enrolleeDto = _mapper.Map<EnrolleDto>(enrollee);
 
