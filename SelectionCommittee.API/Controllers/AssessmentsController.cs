@@ -121,12 +121,8 @@ namespace SelectionCommittee.API.Controllers
                 var response = _assessmentResponseComposer.ComposeForUpdate(statusCode);
                 return response;
             }
-            else
-            {
-                var assessmentCreateDto = _mapper.Map<AssessmentCreateDto>(assessmentAddOrUpdateModel);
-                var assessmentCreateModel = await _assessmentService.AddAsync(assessmentCreateDto);
-                return Ok(assessmentCreateModel);
-            }
+
+            return BadRequest();
         }
 
         /// <summary>

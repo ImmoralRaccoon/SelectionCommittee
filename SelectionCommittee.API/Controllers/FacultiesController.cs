@@ -159,6 +159,7 @@ namespace SelectionCommittee.API.Controllers
             {
                 BadRequest();
             }
+
             if (id.HasValue)
             {
                 var facultyUpdateDto = _mapper.Map<FacultyUpdateDto>(facultyAddOrUpdateModel);
@@ -167,13 +168,8 @@ namespace SelectionCommittee.API.Controllers
                 var response = _facultyResponseComposer.ComposeForUpdate(statusCode);
                 return response;
             }
-            else
-            {
-                var facultyCreateDto = _mapper.Map<FacultyCreateDto>(facultyAddOrUpdateModel);
-                var statusCode = await _facultyService.AddAsync(facultyCreateDto);
-                var response = _facultyResponseComposer.ComposeForCreate(statusCode, facultyCreateDto);
-                return response;
-            }
+
+            return BadRequest();
         }
 
         /// <summary>

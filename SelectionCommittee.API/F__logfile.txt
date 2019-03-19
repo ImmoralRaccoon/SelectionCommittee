@@ -499,3 +499,8 @@
 2019-03-19 12:21:15.2308 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
 2019-03-19 12:21:32.0085 WARN Incorrect EnrolleeUpdateModel. Update operation failed.
 2019-03-19 12:21:49.8241 INFO LogOut() method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-19 16:57:49.3669 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
+2019-03-19 16:58:34.7176 WARN Incorrect AssessmentCreateModel. Create operation failed.
+2019-03-19 16:59:04.3485 INFO GetAllAssessmentsForEnrollee(int id) method from SelectionCommittee.BLL.Assessments.Services.AssessmentService has been finished.
+2019-03-19 17:00:36.4621 WARN Incorrect AssessmentCreateModel. Create operation failed.
+2019-03-19 17:12:11.6681 INFO LogIn(string email, string password) method from SelectionCommittee.Authentication.Services.AuthentificationService has been finished.
